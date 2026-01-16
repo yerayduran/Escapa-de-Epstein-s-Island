@@ -63,12 +63,37 @@ public class Juego {
             System.out.print("\n> ");
             //String comando = ...;
 
-            /*
-            TODO 4: Crear un 'switch' o una estructura 'if-else if'
-             para procesar el 'comando' del usuario.
-             Debe gestionar como mínimo: "ayuda", "mirar", "inventario",
-             "ir derecha", "ir izquierda", "coger [objeto]" y "salir".
-             */
+            switch (comando) {
+                case "mirar" -> {
+                    mostrarInfoHabitacion();
+                }
+                case "inventario" -> {
+                    System.out.print("Objetos en tu inventario: ");
+                    for (String objeto : inventario) {
+                        if (objeto != null) {
+                            System.out.print(objeto + " ");
+                        }
+                    }
+                    System.out.println();
+                }
+                case "ir izquierda" -> {
+                    if (habitacionActual > 0) {
+                        habitacionActual--;
+                        System.out.println("Te has movido a la habitación de la izquierda.");
+                        mostrarInfoHabitacion();
+                    } else {
+                        System.out.println("No puedes ir más a la izquierda.");
+                    }
+                }
+                case "ir derecha" -> {
+                    if (habitacionActual < habitaciones.length - 1) {
+                        habitacionActual++;
+                        System.out.println("Te has movido a la habitación de la derecha.");
+                        mostrarInfoHabitacion();
+                    } else {
+                        System.out.println("No puedes ir más a la derecha.");
+                    }
+                }
 
 
         }
