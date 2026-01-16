@@ -77,11 +77,28 @@ public class Juego {
         scanner.close();
     }
 
-    /*
-    (Opcional - Buenas Prácticas)
-    Si el 'switch' se vuelve muy grande, podéis crear métodos privados
-    para organizar el código, por ejemplo:
-    private static void procesarComandoCoger(String comando) { ... }
-    private static void mostrarInfoHabitacion() { ... }
-    */
+    /**
+     * Muestra la información de la habitación actual,
+     * incluyendo su descripción y los objetos que hay en ella.
+     */
+    private static void mostrarInfoHabitacion() {
+        System.out.println(habitaciones[habitacionActual]);
+
+        boolean hayObjetos = false;
+
+        for (String objeto : objetosMapa[habitacionActual]) {
+            if (objeto != null) {
+                hayObjetos = true;
+                break;
+            }
+        }
+
+        if (!hayObjetos) {
+            System.out.println("No hay objetos en esta habitación.");
+        }
+        else {
+            mostrarObjetosHabitacion();
+        }
+
+    }
 }
