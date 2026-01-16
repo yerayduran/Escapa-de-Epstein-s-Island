@@ -133,4 +133,24 @@ public class Juego {
             System.out.println("No hay ningún objeto llamado " + objetoACoger + " en esta habitación.");
         }
     }
+
+    /**
+     * Muestra los objetos que hay en la habitación actual.
+     */
+    private static void mostrarObjetosHabitacion() {
+        System.out.print("Objetos en la habitación: ");
+        boolean hayObjetos = false;
+        boolean hayMasDeUnObjeto = false;
+        for (String objeto : objetosMapa[habitacionActual]) {
+            if (objeto != null) {
+                hayObjetos = true;
+                System.out.print(hayMasDeUnObjeto ? ", " + objeto : objeto);
+                hayMasDeUnObjeto = true;
+            }
+        }
+        if (!hayObjetos) {
+            System.out.print("No hay objetos.");
+        }
+        System.out.println();
+    }
 }
