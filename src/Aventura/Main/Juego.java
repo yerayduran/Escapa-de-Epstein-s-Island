@@ -1,5 +1,6 @@
 package Aventura.Main;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -63,13 +64,57 @@ public class Juego {
             System.out.print("\n> ");
             //String comando = ...;
 
-            /*
-            TODO 4: Crear un 'switch' o una estructura 'if-else if'
-             para procesar el 'comando' del usuario.
-             Debe gestionar como mínimo: "ayuda", "mirar", "inventario",
-             "ir derecha", "ir izquierda", "coger [objeto]" y "salir".
-             */
+            switch (comando) {
+                case "mirar" -> {
+                    mostrarInfoHabitacion();
+                }
+                case "inventario" -> {
+                    System.out.print("Objetos en tu inventario: ");
+                    for (String objeto : inventario) {
+                        if (objeto != null) {
+                            System.out.print(objeto + " ");
+                        }
+                    }
+                    System.out.println();
+                }
+                case "ir izquierda" -> {
+                    if (habitacionActual > 0) {
+                        habitacionActual--;
+                        System.out.println("Te has movido a la habitación de la izquierda.");
+                        mostrarInfoHabitacion();
+                    } else {
+                        System.out.println("No puedes ir más a la izquierda.");
+                    }
+                }
+                case "ir derecha" -> {
+                    if (habitacionActual < habitaciones.length - 1) {
+                        habitacionActual++;
+                        System.out.println("Te has movido a la habitación de la derecha.");
+                        mostrarInfoHabitacion();
+                    } else {
+                        System.out.println("No puedes ir más a la derecha.");
+                    }
+                }
+                case "coger" -> {
+                    if (!hayObjetosEnHabitacion()) {
+                        System.out.println("No hay objetos para coger en esta habitación.");
+                        break;
+                    }
+                    mostrarObjetosHabitacion();
+                    System.out.print("¿Qué objeto quieres coger? ");
+                    String objetoACoger = scanner.nextLine().toLowerCase(Locale.ROOT);
 
+                    procesarComandoCoger(objetoACoger);
+                }
+                case "salir" -> {
+                    jugando = false;
+                    System.out.println("Saliendo del juego...");
+                }
+
+                default -> {
+                    mostrarAyuda();
+                }
+            }
 
         }
 
