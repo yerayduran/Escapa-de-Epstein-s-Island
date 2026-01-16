@@ -1,5 +1,6 @@
 package Aventura.Main;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -94,7 +95,26 @@ public class Juego {
                         System.out.println("No puedes ir más a la derecha.");
                     }
                 }
+                case "coger" -> {
+                    if (!hayObjetosEnHabitacion()) {
+                        System.out.println("No hay objetos para coger en esta habitación.");
+                        break;
+                    }
+                    mostrarObjetosHabitacion();
+                    System.out.print("¿Qué objeto quieres coger? ");
+                    String objetoACoger = scanner.nextLine().toLowerCase(Locale.ROOT);
 
+                    procesarComandoCoger(objetoACoger);
+                }
+                case "salir" -> {
+                    jugando = false;
+                    System.out.println("Saliendo del juego...");
+                }
+
+                default -> {
+                    mostrarAyuda();
+                }
+            }
 
         }
 
