@@ -101,4 +101,36 @@ public class Juego {
         }
 
     }
+
+    /**
+     * Procesa el comando de coger un objeto.
+     *
+     * @param objetoACoger El nombre del objeto que se quiere coger.
+     */
+    private static void procesarComandoCoger(String objetoACoger) {
+        boolean objetoEncontrado = false;
+        for (int i = 0; i < objetosMapa[habitacionActual].length; i++) {
+            if (objetoACoger.equals(objetosMapa[habitacionActual][i])) {
+                objetoEncontrado = true;
+                // Buscar espacio en el inventario
+                boolean espacioEncontrado = false;
+                for (int j = 0; j < inventario.length; j++) {
+                    if (inventario[j] == null) {
+                        inventario[j] = objetoACoger;
+                        objetosMapa[habitacionActual][i] = null; // Quitar el objeto de la habitación
+                        System.out.println("Has cogido " + objetoACoger + ".");
+                        espacioEncontrado = true;
+                        break;
+                    }
+                }
+                if (!espacioEncontrado) {
+                    System.out.println("Tu inventario está lleno. No puedes coger más objetos.");
+                }
+                break;
+            }
+        }
+        if (!objetoEncontrado) {
+            System.out.println("No hay ningún objeto llamado " + objetoACoger + " en esta habitación.");
+        }
+    }
 }
