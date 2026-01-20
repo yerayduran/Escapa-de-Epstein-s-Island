@@ -1,4 +1,4 @@
 package Aventura.domain;
 
-public class Entidad {
+public abstract class Entidad {
 }
