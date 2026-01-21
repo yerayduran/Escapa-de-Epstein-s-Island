@@ -1,5 +1,7 @@
 package Aventura.domain;
 
+import Aventura.interfaces.Inventariable;
+
 public class Jugador extends Entidad {
 
     private String nombre;
