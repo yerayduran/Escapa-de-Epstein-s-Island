@@ -1,19 +1,15 @@
 package Aventura.domain;
 
+import Aventura.exceptions.InventarioLlenoException;
 import Aventura.interfaces.Inventariable;
 
 public class Jugador extends Entidad {
 
-    private String nombre;
     private Objeto[] inventario;
-    private int posicion;
 
-
-    public Jugador(String nombre, String descripcion, String nombre1, Objeto[] inventario, int posicion) {
+    public Jugador(String nombre, String descripcion, Objeto[] inventario) {
         super(nombre, descripcion);
-        setNombre(nombre1);
-        setInventario(inventario);
-        setPosicion(posicion);
+        this.inventario = inventario;
     }
 
     public Objeto[] getInventario() {
@@ -21,31 +17,29 @@ public class Jugador extends Entidad {
     }
 
     public void setInventario(Objeto[] inventario) {
+        System.out.println("Inventario del jugador:");
+        for (int i = 0; i < inventario.length; i++) {
+            System.out.println(i + ": " + (inventario[i] != null ? inventario[i].getNombre() : "vacío"));
+        }
         this.inventario = inventario;
     }
 
-    @Override
-    public String getNombre() {
-        return nombre;
-    }
+    public void coger(Objeto obj) throws InventarioLlenoException {
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getPosicion() {
-        return posicion;
-    }
-
-    public void setPosicion(int posicion) {
-        this.posicion = posicion;
-    }
-
-    private void coger(Objeto obj){
-
-        if(obj instanceof Inventariable){
-
+        if (!(obj instanceof Inventariable)) {
+            System.out.println("No puedes coger este objeto: no es inventariable.");
+            return;
         }
 
+        for (int i = 0; i < inventario.length; i++) {
+            if (inventario[i] == null) {
+                inventario[i] = obj;
+                System.out.println("Has cogido: " + obj.getNombre());
+                return;
+            }
+        }
+
+        throw new InventarioLlenoException("El inventario está lleno. No puedes coger más objetos.");
     }
+
 }
