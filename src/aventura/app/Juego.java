@@ -1,4 +1,4 @@
-package aventura.Main;
+package aventura.app;
 
 import java.util.Locale;
 import java.util.Scanner;

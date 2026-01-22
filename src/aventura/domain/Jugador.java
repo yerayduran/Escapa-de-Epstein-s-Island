@@ -3,43 +3,42 @@ package aventura.domain;
 import aventura.exceptions.InventarioLlenoException;
 import aventura.interfaces.Inventariable;
 
-public class Jugador extends Entidad {
+public class Jugador {
 
     private Objeto[] inventario;
+    private int posicion;
 
-    public Jugador(String nombre, String descripcion, Objeto[] inventario) {
-        super(nombre, descripcion);
-        this.inventario = inventario;
+    public Jugador(int capacidadInventario) {
+        this.inventario = new Objeto[capacidadInventario];
+        this.posicion = 0;
+    }
+
+    public void coger(Objeto objeto) throws InventarioLlenoException {
+        if (!(objeto instanceof Inventariable)) {
+            return;
+        }
+
+        for (int i = 0; i < inventario.length; i++) {
+            if (inventario[i] == null) {
+                inventario[i] = objeto;
+                return;
+            }
+        }
+
+        throw new InventarioLlenoException("El inventario está lleno.");
     }
 
     public Objeto[] getInventario() {
         return inventario;
     }
 
-    public void setInventario(Objeto[] inventario) {
-        System.out.println("Inventario del jugador:");
+    public boolean eliminarObjeto(Objeto obj) {
         for (int i = 0; i < inventario.length; i++) {
-            System.out.println(i + ": " + (inventario[i] != null ? inventario[i].getNombre() : "vacío"));
-        }
-        this.inventario = inventario;
-    }
-
-    public void coger(Objeto obj) throws InventarioLlenoException {
-
-        if (!(obj instanceof Inventariable)) {
-            System.out.println("No puedes coger este objeto: no es inventariable.");
-            return;
-        }
-
-        for (int i = 0; i < inventario.length; i++) {
-            if (inventario[i] == null) {
-                inventario[i] = obj;
-                System.out.println("Has cogido: " + obj.getNombre());
-                return;
+            if (inventario[i].equals(obj)) {
+                inventario[i] = null;
+                return true;
             }
         }
-
-        throw new InventarioLlenoException("El inventario está lleno. No puedes coger más objetos.");
+        return false;
     }
-
 }
