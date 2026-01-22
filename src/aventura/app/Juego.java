@@ -1,10 +1,10 @@
-package Aventura.Main;
+package aventura.app;
 
 import java.util.Locale;
 import java.util.Scanner;
 
 /**
- * Clase principal del juego "Tu Propia Aventura".
+ * Clase principal del juego "Tu Propia aventura".
  * Esqueleto para la Misión 1 (UD1-UD3).
  * VUESTRO TRABAJO es rellenar todos los TODO
  */
@@ -13,22 +13,18 @@ public class Juego {
     // --- NÚCLEO: Definición de Datos (FASE 1) ---
     // Esta parte os la damos HECHA. Es el "contrato" del núcleo.
 
-    private static final int TAM_INVENTARIO = 5;
-
     private static String descripcionJuego = "Estabas cagando en el baño de un Mercadona random, tenías mucho sueño porque habías estado\\n toda la noche jugando al call of duty," +
-            "de repente notas cómo tus parpados empiezan a cerrarse. Al final te quedas dormido por viciar toda\\n la noche y resulta que, cuando te despiertas, en vez de" +
-            "estar sentado en aquel váter estas en una especie de sillón\\n en una sala totalmente a oscuras. Cuando te levantas, se te enciende la sala en la que estás. Ya no estás " +
+            " de repente notas cómo tus parpados empiezan a cerrarse. Al final te quedas dormido por viciar toda\\n la noche y resulta que, cuando te despiertas, en vez de" +
+            " estar sentado en aquel váter estas en una especie de sillón\\n en una sala totalmente a oscuras. Cuando te levantas, se te enciende la sala en la que estás. Ya no estás " +
             "en aquel baño cutre del Mercadona,\\n ahora estabas en un lugar totalmente desconocido.";
 
     // El mapa de habitaciones.
     // TODO: (Skin) ¡Rellenad esto con vuestras descripciones!
     private static String[] habitaciones = {
-            "Estás en una sala bastante rara, pero antes de ello decides investigar un poco por si encuentras algo de utilidad.\n" +
-                    "Hasta ahora has visto una estantería vacía con un solo libro ahí solito en el que sobresale un papel.  Hay una puerta a la DERECHA.",  // Posición 0
-            "Estás en el pasillo principal. Hay puertas a la DERECHA y a la IZQUIERDA. En esta sala lo que ves es una caseta de perro\n" +
-                    " pero te preguntas el por qué de que no esté el chucho. Igualmente no le das importancia, aunque sí se la das al cuenco que estaba\n" +
-                    "al lado...", // Posición 1
-            "Estás en la sala de la derecha. Hay una puerta a la IZQUIERDA por la que has venido. Hay un cajón el cual no has intentado abrir...", // Posición 2
+            "Estás en una sala . Hay una puerta a la DERECHA.",  // Posición 0
+            "Estás en el pasillo principal. Hay puertas a la DERECHA y a la IZQUIERDA.", // Posición 1
+            "Estás en el aula 105. Hay una puerta a la IZQUIERDA y has visto una 'llave' en una mesa.", // Posición 2
+            // Borra las habitaciones y escribe las tuyas
     };
 
     // Los objetos que hay en cada habitación.
@@ -39,8 +35,8 @@ public class Juego {
             {"Nota", null},      // Objetos en Habitación 2
     };
 
-    //El inventario del jugador. Tamaño fijo.
-    private static String[] inventario = new String[TAM_INVENTARIO];
+    // El inventario del jugador. Tamaño fijo.
+    private static String[] inventario = new String[5];
 
     // Variable que guarda la posición actual del jugador
     private static int habitacionActual = 0; // Empezamos en la primera habitación

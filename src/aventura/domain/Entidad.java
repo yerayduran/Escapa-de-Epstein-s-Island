@@ -1,4 +1,4 @@
-package Aventura.domain;
+package aventura.domain;
 
 public abstract class Entidad {
 
@@ -13,6 +13,7 @@ public abstract class Entidad {
     public String getNombre() {
         return nombre;
     }
+
 
     public String getDescripcion() {
         return descripcion;
