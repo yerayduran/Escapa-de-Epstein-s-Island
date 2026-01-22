@@ -1,10 +1,10 @@
-package Aventura.Main;
+package aventura.Main;
 
 import java.util.Locale;
 import java.util.Scanner;
 
 /**
- * Clase principal del juego "Tu Propia Aventura".
+ * Clase principal del juego "Tu Propia aventura".
  * Esqueleto para la Misión 1 (UD1-UD3).
  * VUESTRO TRABAJO es rellenar todos los TODO
  */

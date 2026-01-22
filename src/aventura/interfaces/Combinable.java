@@ -1,6 +1,6 @@
-package Aventura.interfaces;
+package aventura.interfaces;
 
-import Aventura.domain.Objeto;
+import aventura.domain.Objeto;
 
 public interface Combinable {
     Objeto combinar(Objeto otroObjeto);

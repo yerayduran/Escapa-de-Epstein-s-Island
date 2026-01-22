@@ -1,4 +1,4 @@
-package Aventura.domain;
+package aventura.domain;
 
 public abstract class Entidad {
 

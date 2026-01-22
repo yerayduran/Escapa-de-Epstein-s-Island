@@ -1,4 +1,4 @@
-package Aventura.exceptions;
+package aventura.exceptions;
 
 public class InventarioLlenoException extends Exception {
     public InventarioLlenoException(String message) {

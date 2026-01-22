@@ -1,4 +1,4 @@
-package Aventura.interfaces;
+package aventura.interfaces;
 
 public interface Inventariable {
 }

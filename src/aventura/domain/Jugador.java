@@ -1,7 +1,7 @@
-package Aventura.domain;
+package aventura.domain;
 
-import Aventura.exceptions.InventarioLlenoException;
-import Aventura.interfaces.Inventariable;
+import aventura.exceptions.InventarioLlenoException;
+import aventura.interfaces.Inventariable;
 
 public class Jugador extends Entidad {
 
