@@ -367,4 +367,50 @@ public class Juego {
                 - salir
                 """);
     }
+
+    /**
+     * Busca un objeto en la habitación actual.
+     *
+     * @param nombre Nombre del objeto.
+     * @return Objeto encontrado o {@code null}.
+     */
+    private Objeto buscarEnHabitacion(String nombre) {
+
+        Objeto[] objetos = mapa[habitacionActual].getObjetos();
+        String n = nombre.toLowerCase(Locale.ROOT);
+
+        for (Objeto obj : objetos) {
+
+            if (obj != null &&
+                    obj.getNombre().toLowerCase(Locale.ROOT).equals(n)) {
+                return obj;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Busca un objeto en la habitación o en el inventario.
+     *
+     * @param nombre Nombre del objeto.
+     * @return Objeto encontrado o {@code null}.
+     */
+    private Objeto buscarObjeto(String nombre) {
+
+        Objeto encontrado = buscarEnHabitacion(nombre);
+
+        if (encontrado != null) {
+            return encontrado;
+        }
+
+        String n = nombre.toLowerCase(Locale.ROOT);
+        for (Objeto obj : jugador.getInventario()) {
+
+            if (obj != null &&
+                    obj.getNombre().toLowerCase(Locale.ROOT).equals(n)) {
+                return obj;
+            }
+        }
+        return null;
+    }
 }
