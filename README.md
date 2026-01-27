@@ -6,7 +6,7 @@
 
 ---
 
-## 📖 Nuestra Historia (El Scape Room Hacendado)
+## 📖 Nuestra Historia (HACENDADO OUT)
 
 **Temática del Juego:** Escape Room en el Mercadona.
 
@@ -35,8 +35,34 @@ Esta primera versión del proyecto (Misión 1 / UD1-UD3) implementa el "núcleo"
 * Arrays
 * Git
 
+---
+
+## ⚙️ Estado del Proyecto (Fase 2: POO)
+
+Esta fase refactoriza el motor básico (Fase 1) a Programación Orientada a Objetos. 
+
+El objetivo es convertir el diseño procedural en un diseño con clases claras (Habitacion, Jugador, Objeto), usar colecciones en lugar de arrays y mejorar la mantenibilidad y extensibilidad del juego.
+
+**Funcionalidad de la Fase:**
+
+* **Arquitectura OOP con clases principales**: (`Objeto`, `Entidad`, `Habitacion`, ...)
+* **Bucle de juego principal** implementado en una clase Juego (main) que usa los objetos anteriores.
+* **Inventario:** En la clase `Jugador.java`
+* **Conexiones entre habitaciones**: Con los comandos `ir izquierda` / `derecha`
+* **Mejora de la separación de responsabilidades y preparación para añadir**: persistencia (`guardar/cargar`), items con propiedades, ...
+
+**Tecnologías (Fase 2):**
+
+* Java (JDK)
+* Programación Orientada a Objetos
+* Colecciones (ArrayList, HashMap)
+* Arrays
+* Interfaces
+* Records
+* Excepciones
+* Git
+
 ## 🔜 Próximas Fases
 
-* **Fase 2 (POO):** Refactorizar este código a Programación Orientada a Objetos (Clases `Habitacion`, `Jugador`, `Objeto`).
 * **Fase 3 (Colecciones/Ficheros):** Cambiar los arrays del inventario por `ArrayLists` y añadir un sistema de **Guardar/Cargar Partida**.
 * **Fase 4 (GUI/BBDD):** Crear una interfaz gráfica (GUI) y conectar a una base de datos para guardar progresos o logros.

@@ -1,10 +1,8 @@
 package aventura.app;
 
-import aventura.domain.Contenedor;
-import aventura.domain.Objeto;
-import aventura.domain.Puerta;
-import aventura.domain.RespuestaAccion;
+import aventura.domain.*;
 import aventura.exceptions.InventarioLlenoException;
+import aventura.interfaces.Abrible;
 import aventura.interfaces.Combinable;
 import aventura.interfaces.Leible;
 
