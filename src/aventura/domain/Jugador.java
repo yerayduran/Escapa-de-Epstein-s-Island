@@ -82,8 +82,7 @@ public class Jugador extends Entidad {
      * @return Resultado de la acción.
      * @throws InventarioLlenoException Si el inventario está lleno.
      */
-    public RespuestaAccion coger(Objeto objeto)
-            throws InventarioLlenoException {
+    public RespuestaAccion coger(Objeto objeto) throws InventarioLlenoException {
 
         if (!(objeto instanceof Inventariable)) {
             return new RespuestaAccion(false, "Este objeto no se puede coger.");
@@ -106,7 +105,7 @@ public class Jugador extends Entidad {
      *
      * @param nombreObjeto Nombre del objeto a soltar.
      * @return {@code true} si se elimina correctamente,
-     * {@code false} en caso contrario.
+     *         {@code false} en caso contrario.
      */
     public boolean soltarPorNombre(String nombreObjeto) {
 
@@ -116,16 +115,9 @@ public class Jugador extends Entidad {
 
             Objeto obj = inventario[i];
 
-            if (obj != null &&
-                    n.equals(obj.getNombre().toLowerCase())) {
+            if (obj != null && n.equals(obj.getNombre().toLowerCase())) {
 
-                System.arraycopy(
-                        inventario,
-                        i + 1,
-                        inventario,
-                        i,
-                        siguienteLibre - i - 1
-                );
+                System.arraycopy(inventario, i + 1, inventario, i, siguienteLibre - i - 1);
 
                 inventario[--siguienteLibre] = null;
 
@@ -136,4 +128,60 @@ public class Jugador extends Entidad {
         return false;
     }
 
+    /**
+     * Comprueba si el jugador posee un objeto concreto.
+     *
+     * @param objeto Objeto a comprobar.
+     * @return {@code true} si lo tiene, {@code false} en caso contrario.
+     */
+    public boolean tieneObjeto(Objeto objeto) {
+
+        for (int i = 0; i < siguienteLibre; i++) {
+
+            if (inventario[i] == objeto) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Busca una llave válida para abrir un contenedor.
+     *
+     * @param contenedor Contenedor que se desea abrir.
+     * @return Llave adecuada o {@code null} si no existe.
+     */
+    public Llave buscarLlaveParaContenedor(Contenedor contenedor) {
+
+        if (contenedor.getCodigoNecesario() == null) {
+            return null;
+        }
+        for (int i = 0; i < siguienteLibre; i++) {
+            if (inventario[i] instanceof Llave llave && llave.getCodigoSeguridad().equals(contenedor.getCodigoNecesario())) {
+                return llave;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Busca una llave en el inventario según su código.
+     *
+     * @param codigo Código de seguridad.
+     * @return Llave encontrada o {@code null}.
+     */
+    public Llave buscarLlavePorCodigo(String codigo) {
+        if (codigo == null) return null;
+
+        for (int i = 0; i < siguienteLibre; i++) {
+
+            Objeto obj = inventario[i];
+            if (obj instanceof Llave llave && codigo.equals(llave.getCodigoSeguridad())) {
+                return llave;
+            }
+        }
+
+        return null;
+    }
 }
