@@ -18,7 +18,7 @@ import aventura.interfaces.Combinable;
  * @author Manuel Pérez
  * @version 1.0
  */
-public class ConsoladorVibratorio extends Item implements Combinable {
+public class Pilas extends Item implements Combinable {
 
     /**
      * Crea una nueva cabeza de llave.
@@ -27,7 +27,7 @@ public class ConsoladorVibratorio extends Item implements Combinable {
      * @param descripcion descripción detallada del objeto.
      * @param visible     indica si el objeto es visible para el jugador.
      */
-    public ConsoladorVibratorio(String nombre, String descripcion, boolean visible) {
+    public Pilas(String nombre, String descripcion, boolean visible) {
         super(nombre, descripcion, visible);
     }
 
@@ -45,7 +45,7 @@ public class ConsoladorVibratorio extends Item implements Combinable {
     @Override
     public Objeto combinar(Objeto otro) {
         if (otro instanceof SoporteLlave) {
-            return new LlaveVerde("Llave Verde Hacendado", "Llave verde completa Hacendado (5973).", true, "5973");
+            return new LlaveVerde("Megaconsolador Funcional de P.Diddy", "Consolador muy usado por un negro (5973).", true, "5973");
         }
         return null;
     }
