@@ -141,6 +141,28 @@ public class Juego {
         }
     }
 
+    // Mueve al jugador a la habitacion de la derecha.
+    private void moverDerecha() {
+        if (habitacionActual < mapa.length - 1) {
+            habitacionActual++;
+            jugador.setPosicion(habitacionActual);
+            System.out.println("Te has movido a la habitación de la derecha.");
+        } else {
+            System.out.println("No puedes ir más a la derecha.");
+        }
+    }
+
+    // Mueve al jugador a la habitacion de la izquierda.
+    private void moverIzquierda() {
+        if (habitacionActual > 0) {
+            habitacionActual--;
+            jugador.setPosicion(habitacionActual);
+            System.out.println("Te has movido a la habitación de la izquierda.");
+        } else {
+            System.out.println("No puedes ir más a la izquierda.");
+        }
+    }
+
     // Muestra la información de la habitación.
     private void mirar() {
         mostrarInfoHabitacion();
