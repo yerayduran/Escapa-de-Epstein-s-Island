@@ -12,6 +12,19 @@ import java.util.Scanner;
 
 public class Juego {
 
+    // Array que representa el mapa del juego. Cada posición corresponde a una habitación.
+    private final Habitacion[] mapa;
+
+    // Jugador principal del juego.
+    private final Jugador jugador;
+
+    // Índice de la habitación en la que se encuentra el jugador.
+    private int habitacionActual;
+
+    // Scanner utilizado para leer los comandos del usuario.
+    private final Scanner scanner = new Scanner(System.in);
+
+
     static void main(String[] args) {
 
     }
