@@ -24,7 +24,11 @@ public class Juego {
     // Scanner utilizado para leer los comandos del usuario.
     private final Scanner scanner = new Scanner(System.in);
 
-
+    /**
+     * Texto introductorio que describe la historia del juego.
+     */
+    private static final String DESCRIPCION_JUEGO =
+            "";
     /**
      * Crea una nueva partida.
      *
