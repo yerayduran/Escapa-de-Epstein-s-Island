@@ -24,7 +24,7 @@ public class SoporteLlave extends Item implements Combinable {
 
     /**
      * Intenta combinar este soporte con otro objeto.
-     * Si el objeto proporcionado es una {@link CabezaLlave}, se genera una
+     * Si el objeto proporcionado es una {@link ConsoladorVibratorio}, se genera una
      * {@link LlaveVerde} completa.
      *
      * @param otro Objeto con el que se intenta combinar.
@@ -32,7 +32,7 @@ public class SoporteLlave extends Item implements Combinable {
      */
     @Override
     public Objeto combinar(Objeto otro) {
-        if (otro instanceof CabezaLlave) {
+        if (otro instanceof ConsoladorVibratorio) {
             return new LlaveVerde("Llave Verde Hacendado", "Llave verde completa Hacendado (5973).", true, "5973");
         }
         return null;

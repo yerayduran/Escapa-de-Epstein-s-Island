@@ -8,6 +8,18 @@ import aventura.interfaces.Leible;
 
 import java.util.Locale;
 import java.util.Scanner;
+/**
+
+ Clase principal del juego "DIDDY'S FREAK ESCAPE".
+ <p>
+ Gestiona la lógica general del juego, el mapa, el jugador,
+ la entrada de comandos y la interacción con los objetos.
+ </p>*
+ Contiene el bucle principal del juego y controla
+ los movimientos, acciones y condiciones de victoria.**
+
+ @author Yeray Durán y Manuel Pérez
+ @version 1.0*/
 
 
 public class Juego {
@@ -28,13 +40,13 @@ public class Juego {
      * Texto introductorio que describe la historia del juego.
      */
     private static final String DESCRIPCION_JUEGO =
-            "Estabas cagando en el baño de un Mercadona random, tenías mucho sueño porque habías estado toda la noche " +
-                    "jugando al Call of Duty. De repente te quedas dormido y cuando despiertas, en vez de estar sentado" +
+            "Estabas tirado en el baño de la villa de Maduro, tenías mucho sueño porque habías estado toda la noche " +
+                    "mirando reels de Trump diciendo 'FAKE NEWS' en X. De repente te quedas dormido y cuando despiertas, en vez de estar sentado" +
                     " en aquel váter, estás en una sala totalmente a oscuras.\n" +
-                    "Te levantas y se enciende la sala. Ya no estás en aquel baño cutre del Mercadona, ahora estás en un lugar" +
-                    " desconocido. Comienzas a caminar por pasillos interminables hasta que ves una luz en la distancia. A medida " +
-                    "que avanzas, todo se vuelve más brillante y colorido.\n" +
-                    "Finalmente, emerges a la Zona de Cajas Registradoras.";
+                    "Te levantas y se enciende la sala. Ya no estás en aquel baño cutre del Palacio Presidencial, ahora estás en un lugar" +
+                    " desconocido. Comienzas a caminar por pasillos llenos de cuadros de Maduro y fotos edgy de Diddy. A medida " +
+                    "que avanzas, todo se vuelve más absurdo y lleno de contenido viral.\n" +
+                    "Finalmente, emerges a la Zona de Safes donde Diddy guardaba sus...'juguetes' especiales.";
     /**
      * Crea una nueva partida.
      *
@@ -60,25 +72,25 @@ public class Juego {
      */
 
     public static void main(String[] args) {
-        Habitacion sala1 = new Habitacion("Zonas de Cajas Registradora", "Te encuentras en las zonas de pagos de este supermercado y por casualidad encuentras en una caja registradora algo especial.");
-        Habitacion sala2 = new Habitacion("Zona de Congelados", "Estás en la zona de congelados del Mercadona y ves una nota pegada a la pared, y otra dentro del congelador.");
-        Habitacion sala3 = new Habitacion("Zona de Descanso", "Una zona muy tranquila pero con algo sospechoso, además se encuentra allí una taquilla.");
-        Habitacion sala4 = new Habitacion("Zona de Carga y Descarga", "Un almacén enorme donde al final ves una puerta cerrada donde se halla la salida.");
+        Habitacion sala1 = new Habitacion("Zona de Safes", "Estás rodeado de safes con dinero ilícito. Uno tiene algo INSANE.");
+        Habitacion sala2 = new Habitacion("Cuarto del Meme Congelado", "Congelador gigante con TODO MATERIAL COMPROMETEDOR. Nota en Comic Sans pegada.");
+        Habitacion sala3 = new Habitacion("Suite VIP de Diddy", "Sala de lujo con reggaeton de fondo. Taquilla dorada con código.");
+        Habitacion sala4 = new Habitacion("Bunker de Epstein", "Almacén oscuro. TODO ESTÁ CONECTADO... demasiado conectado.");
 
         Habitacion[] mapa = new Habitacion[]{sala1, sala2, sala3, sala4};
 
-        SoporteLlave palo = new SoporteLlave("Palo", "Un palo robusto, útil para combinar.", true);
-        CabezaLlave cabeza = new CabezaLlave("Llave", "Un trozo de llave vieja y rota.", true);
-        Nota nota = new Nota("Nota", "Una nota arrugada.", true, "Para salir de aquí es esencial combinar...");
-        Nota nota2 = new Nota("Ticket", "Un ticket con un texto escrito por un antiguo cliente", true, "No tengo mucho tiempo antes de que vengan a por mí, pero ve a la zona de descanso con mi tarjeta y ...");
-        Llave tarjeta = new Llave("Tarjeta", "Tarjeta de empleado en mal estado con código Hacendado.", true, "Hacendado");
+        SoporteLlave consolador = new SoporteLlave("Consolador", "Un consolador rosa SIN PILAS encontrado en el cuarto de Diddy. Necesita energía para funcionar.", true);
+        ConsoladorVibratorio pilas = new ConsoladorVibratorio("Pilas", "Pilas Duracell edición especial. Con estas el consolador vibrará con toda su potencia.", true);
+        Nota nota = new Nota("Screenshot", "Screenshot de X de Trump a las 3 AM", true, "Para escapar necesitas PODER... combina lo que Diddy dejó olvidado... el consolador con pilas vibrará la puerta...");
+        Nota nota2 = new Nota("DM", "DM filtrado de Diddy", true, "BRO dejé las pilas en mi taquilla VIP... código ELITE420... combínalas con mi consolador y tendrás el poder vibratorio para abrir...");
+        Llave tarjeta = new Llave("Tarjeta", "Tarjeta VIP de los after parties. Código: ELITE420", true, "ELITE420");
 
-        Contenedor caja = new Contenedor("Caja", "Caja registradora que por desgracia no tiene dinero para mis videojuegos, pero se ve que hay algo más", true, null, null);
-        Contenedor congelador = new Contenedor("Congelador", "Congelador estropeado y con comida caducada", true, null, null);
-        Contenedor taquilla = new Contenedor("Taquilla", "Taquilla del empleado la cual tiene muchos arañazos", true, "Hacendado", null);
+        Contenedor caja = new Contenedor("Safe", "Safe gigante que emite vibraciones extrañas", true, null, null);
+        Contenedor congelador = new Contenedor("Congelador", "Congelador CURSED que emite ruidos raros", true, null, null);
+        Contenedor taquilla = new Contenedor("Taquilla", "Taquilla dorada con teclado numérico. Código: ELITE420", true, "ELITE420", null);
 
-        sala4.añadirObjeto(palo);
-        Puerta puertaSalida = new Puerta("Puerta", "La puerta final bloqueada. Requiere llave Hacendado completa.", true);
+        sala4.añadirObjeto(consolador);
+        Puerta puertaSalida = new Puerta("Puerta", "Puerta del bunker con cerradura de vibración. Requiere un Consolador Vibratorio (código 5973) para resonar y abrirse.", true);
         sala4.añadirObjeto(puertaSalida);
 
         sala1.añadirObjeto(caja);
@@ -89,7 +101,7 @@ public class Juego {
         congelador.ponerObjetoDentro(nota2);
 
         sala3.añadirObjeto(taquilla);
-        taquilla.ponerObjetoDentro(cabeza);
+        taquilla.ponerObjetoDentro(pilas);
 
         Jugador jugador = new Jugador(7);
         Juego juego = new Juego(mapa, jugador, 0);
@@ -98,9 +110,9 @@ public class Juego {
 
     // Inicia el juego y ejecuta el bucle principal.
     public void iniciar() {
-        System.out.println("=== Bienvenido a HACENDADO OUT ===\n");
+        System.out.println("=== 🔞 BIENVENIDO AL MULTIVERSE DE MEMES CONTROVERSIALES 🔞 ===\n");
         System.out.println(DESCRIPCION_JUEGO + "\n");
-        System.out.println("Escribe 'ayuda' para ver los comandos disponibles.\n");
+        System.out.println("⚠️ DISCLAIMER: Este juego es SATIRA. Escribe 'ayuda' para ver los comandos.\n");
 
         boolean proceso = true;
         while (proceso) {
@@ -118,7 +130,7 @@ public class Juego {
     // Muestra el nombre y descripción de la habitación actual.
     private void mostrarHabitacionActual() {
         System.out.println("--------------------------------------------------");
-        System.out.println("Estás en: " + mapa[habitacionActual].getNombre());
+        System.out.println("📍 Estás en: " + mapa[habitacionActual].getNombre());
         System.out.println("--------------------------------------------------");
         mostrarInfoHabitacion();
     }
@@ -180,7 +192,7 @@ public class Juego {
 
     // Muestra el inventario del jugador.
     private void inventario() {
-        System.out.print("Inventario: ");
+        System.out.print("💼 Inventario: ");
         Objeto[] inv = jugador.getInventario();
         boolean hayObjetos = false;
         for (Objeto obj : inv) {
@@ -190,7 +202,7 @@ public class Juego {
             }
         }
         if (!hayObjetos) {
-            System.out.print("vacío");
+            System.out.print("vacío (como las promesas políticas)");
         }
         System.out.println();
     }
@@ -358,7 +370,7 @@ public class Juego {
             llave = jugador.buscarLlavePorCodigo("5973");
 
             if (llave == null) {
-                System.out.println("No tienes la llave necesaria para abrir esa puerta.");
+                System.out.println("⛔ No tienes el Consolador Vibratorio (consolador + pilas) para hacer resonar la puerta del bunker");
                 return;
             }
         }
@@ -494,10 +506,13 @@ public class Juego {
 
         System.out.println("""
                 ╔══════════════════════════════════════╗
-                ║ ¡ESCAPASTE DEL MERCADONA!            ║
-                ║ ¡FELICIDADES, HAS GANADO!            ║
+                ║ ¡CONSOLADOR VIBRATORIO ACTIVADO!     ║
+                ║ LA PUERTA RESONÓ CON LAS VIBRACIONES ║
+                ║ Y SE ABRIÓ EL BUNKER                 ║
+                ║ ¡VIRALIZASTE EL ESCÁNDALO!          ║
+                ║ 500M DE VIEWS EN 1 HORA              ║
                 ║                                      ║
-                ║   *** HACENDADO OUT *** COMPLETADO   ║
+                ║  🔥 DIDDY'S FREAK ESCAPE 🔥          ║
                 ╚══════════════════════════════════════╝
                 """);
 

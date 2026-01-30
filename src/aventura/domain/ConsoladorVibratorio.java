@@ -18,7 +18,7 @@ import aventura.interfaces.Combinable;
  * @author Manuel Pérez
  * @version 1.0
  */
-public class CabezaLlave extends Item implements Combinable {
+public class ConsoladorVibratorio extends Item implements Combinable {
 
     /**
      * Crea una nueva cabeza de llave.
@@ -27,7 +27,7 @@ public class CabezaLlave extends Item implements Combinable {
      * @param descripcion descripción detallada del objeto.
      * @param visible     indica si el objeto es visible para el jugador.
      */
-    public CabezaLlave(String nombre, String descripcion, boolean visible) {
+    public ConsoladorVibratorio(String nombre, String descripcion, boolean visible) {
         super(nombre, descripcion, visible);
     }
 
