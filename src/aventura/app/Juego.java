@@ -8,6 +8,19 @@ import aventura.interfaces.Leible;
 
 import java.util.Locale;
 import java.util.Scanner;
+/**
+
+ Clase principal del juego "DIDDY'S FREAK ESCAPE".
+ <p>
+ Gestiona la lógica general del juego, el mapa, el jugador,
+ la entrada de comandos y la interacción con los objetos.
+ </p>*
+ Contiene el bucle principal del juego y controla
+ los movimientos, acciones y condiciones de victoria.**
+
+ @author Yeray Durán y Manuel Pérez
+ @version 1.0
+ */
 
 
 public class Juego {
