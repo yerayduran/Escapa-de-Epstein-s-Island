@@ -8,18 +8,6 @@ import aventura.interfaces.Leible;
 
 import java.util.Locale;
 import java.util.Scanner;
-/**
-
- Clase principal del juego "DIDDY'S FREAK ESCAPE".
- <p>
- Gestiona la lógica general del juego, el mapa, el jugador,
- la entrada de comandos y la interacción con los objetos.
- </p>*
- Contiene el bucle principal del juego y controla
- los movimientos, acciones y condiciones de victoria.**
-
- @author Yeray Durán y Manuel Pérez
- @version 1.0*/
 
 
 public class Juego {
@@ -46,7 +34,7 @@ public class Juego {
                     "Te levantas y se enciende la sala. Ya no estás en aquel baño cutre del Palacio Presidencial, ahora estás en un lugar" +
                     " desconocido. Comienzas a caminar por pasillos llenos de cuadros de Maduro y fotos edgy de Diddy. A medida " +
                     "que avanzas, todo se vuelve más absurdo y lleno de contenido viral.\n" +
-                    "Finalmente, emerges a la Zona de Safes donde Diddy guardaba sus...'juguetes' especiales.";
+                    "Finalmente, emerges a la Zona de Safes donde Diddy guardaba sus... 'juguetes' especiales.";
     /**
      * Crea una nueva partida.
      *
@@ -363,6 +351,11 @@ public class Juego {
 
         if (obj instanceof Contenedor contenedor) {
             llave = jugador.buscarLlaveParaContenedor(contenedor);
+
+            // Mensaje especial para la taquilla
+            if (contenedor.getNombre().equalsIgnoreCase("Taquilla") && llave != null) {
+                System.out.println("🔓 Usando la " + llave.getNombre() + " que conseguiste del Safe de la primera sala...");
+            }
         }
 
         if (obj instanceof Puerta) {
