@@ -67,7 +67,7 @@ public class Juego {
 
         Habitacion[] mapa = new Habitacion[]{sala1, sala2, sala3, sala4};
 
-        SoporteLlave consolador = new SoporteLlave("Consolador", "Un consolador rosa SIN PILAS encontrado en el cuarto de Diddy. Necesita energía para funcionar.", true);
+        Consolador consolador = new Consolador("Consolador", "Un consolador rosa SIN PILAS encontrado en el cuarto de Diddy. Necesita energía para funcionar.", true);
         Pilas pilas = new Pilas("Pilas", "Pilas Duracell edición especial. Con estas el consolador vibrará con toda su potencia.", true);
         Nota nota = new Nota("Screenshot", "Screenshot de X de Trump a las 3 AM", true, "Para escapar necesitas PODER... combina lo que Diddy dejó olvidado... el consolador con pilas vibrará la puerta...");
         Nota nota2 = new Nota("DM", "DM filtrado de Diddy", true, "BRO dejé las pilas en mi taquilla VIP... código ELITE420... combínalas con mi consolador y tendrás el poder vibratorio para abrir...");

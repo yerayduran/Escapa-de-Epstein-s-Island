@@ -11,8 +11,8 @@ import aventura.interfaces.Combinable;
  * </p>
  *
  * <p>
- * Su función principal es combinarse con un {@link SoporteLlave} para generar
- * una instancia de {@link LlaveVerde}, representando la llave completa.
+ * Su función principal es combinarse con un {@link Consolador} para generar
+ * una instancia de {@link MegaConsolador()}, representando la llave completa.
  * </p>
  *
  * @author Manuel Pérez
@@ -34,18 +34,18 @@ public class Pilas extends Item implements Combinable {
     /**
      * Intenta combinar esta cabeza de llave con otro objeto.
      * <p>
-     * Si el objeto recibido es una instancia de {@link SoporteLlave}, se genera
-     * una nueva {@link LlaveVerde} completamente ensamblada. En caso contrario,
+     * Si el objeto recibido es una instancia de {@link Consolador}, se genera
+     * una nueva {@link MegaConsolador()} completamente ensamblada. En caso contrario,
      * la combinación no es válida y se devuelve {@code null}.
      * </p>
      *
      * @param otro objeto con el que se intenta combinar.
-     * @return una {@link LlaveVerde} si la combinación es válida; {@code null} en caso contrario.
+     * @return una {@link MegaConsolador()} si la combinación es válida; {@code null} en caso contrario.
      */
     @Override
     public Objeto combinar(Objeto otro) {
-        if (otro instanceof SoporteLlave) {
-            return new LlaveVerde("Megaconsolador Funcional de P.Diddy", "Consolador muy usado por un negro (5973).", true, "5973");
+        if (otro instanceof Consolador) {
+            return new MegaConsolador("Megaconsolador Funcional de P.Diddy", "Consolador muy usado por un negro (5973).", true, "5973");
         }
         return null;
     }

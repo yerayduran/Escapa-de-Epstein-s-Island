@@ -16,7 +16,7 @@ package aventura.domain;
  * @author Yeray Durán
  * @version 1.0
  */
-public class LlaveVerde extends Llave {
+public class MegaConsolador extends Llave {
 
     /**
      * Crea una nueva llave verde con código fijo.
@@ -26,7 +26,7 @@ public class LlaveVerde extends Llave {
      * @param visible Indica si la llave es visible.
      * @param codigoSeguridad Parámetro ignorado (el código real es "5973").
      */
-    public LlaveVerde(String nombre, String descripcion, boolean visible, String codigoSeguridad) {
+    public MegaConsolador(String nombre, String descripcion, boolean visible, String codigoSeguridad) {
         super(nombre, descripcion, visible, "5973");
     }
 }

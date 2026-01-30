@@ -9,7 +9,7 @@ import aventura.interfaces.Combinable;
  * @author Yeray Durán
  * @version 1.0
  */
-public class SoporteLlave extends Item implements Combinable {
+public class Consolador extends Item implements Combinable {
 
     /**
      * Crea un nuevo soporte de llave.
@@ -18,14 +18,14 @@ public class SoporteLlave extends Item implements Combinable {
      * @param descripcion Descripción del objeto.
      * @param visible     Indica si el objeto es visible para el jugador.
      */
-    public SoporteLlave(String nombre, String descripcion, boolean visible) {
+    public Consolador(String nombre, String descripcion, boolean visible) {
         super(nombre, descripcion, visible);
     }
 
     /**
      * Intenta combinar este soporte con otro objeto.
      * Si el objeto proporcionado es una {@link Pilas}, se genera una
-     * {@link LlaveVerde} completa.
+     * {@link MegaConsolador} completa.
      *
      * @param otro Objeto con el que se intenta combinar.
      * @return La llave completa si la combinación es válida; en caso contrario, null.
@@ -33,7 +33,7 @@ public class SoporteLlave extends Item implements Combinable {
     @Override
     public Objeto combinar(Objeto otro) {
         if (otro instanceof Pilas) {
-            return new LlaveVerde("Llave Verde Hacendado", "Llave verde completa Hacendado (5973).", true, "5973");
+            return new MegaConsolador("Megaconsolador Funcional de P.Diddy", "Consolador muy usado por un negro (5973).", true, "5973");
         }
         return null;
     }
