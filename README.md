@@ -6,12 +6,12 @@
 
 ---
 
-## 📖 Nuestra Historia (HACENDADO OUT)
+## 📖 Nuestra Historia (Escapa de Epstein´s Island)
 
-**Temática del Juego:** Escape Room en el Mercadona.
+**Temática del Juego:** Escapa de Epstein´s Island
 
 **Premisa:**
-> Estabas cagando en el baño de un Mercadona random, tenías mucho sueño porque habías estado toda la noche jugando al call of duty, de repente notas cómo tus parpados empiezan a cerrarse. Al final te quedas dormido por viciar toda\n la noche y resulta que, cuando te despiertas, en vez de estar sentado en aquel váter estas en una especie de sillón en una sala totalmente a oscuras. Cuando te levantas, se te enciende la sala en la que estás. Ya no estás en aquel baño cutre del Mercadona, ahora estabas en un lugar totalmente desconocido.
+> Estabas tirado en el baño de la villa de Maduro, tenías mucho sueño porque habías estado toda la noche mirando reels de Trump diciendo 'FAKE NEWS' en X. De repente te quedas dormido y cuando despiertas, en vez de estar sentado en aquel váter, estás en una sala totalmente a oscuras. Te levantas y se enciende la sala. Ya no estás en aquel baño cutre del Palacio Presidencial, ahora estás en un lugar desconocido. Comienzas a caminar por pasillos llenos de cuadros de Maduro y fotos edgy de Diddy. A medida que avanzas, todo se vuelve más absurdo y lleno de contenido viral. Finalmente, emerges a la Zona de Safes donde Diddy guardaba sus... 'juguetes' especiales.
 
 **Objetivo:**
 Explorar las pistas y encontrar una forma de salir del sitio misterioso.
