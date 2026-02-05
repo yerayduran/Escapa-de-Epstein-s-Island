@@ -31,11 +31,7 @@ public class Llave extends Item {
      * @param visible Indica si la llave es visible en la habitación.
      * @param codigoSeguridad Código necesario para abrir el contenedor.
      */
-    public Llave(String nombre,
-                 String descripcion,
-                 boolean visible,
-                 String codigoSeguridad) {
-
+    public Llave(String nombre, String descripcion, boolean visible, String codigoSeguridad) {
         super(nombre, descripcion, visible);
         this.codigoSeguridad = codigoSeguridad;
     }

@@ -52,12 +52,12 @@ public class Puerta extends Mueble implements Abrible {
 
         if (llave == null || !"5973".equals(llave.getCodigoSeguridad())) {
             return new RespuestaAccion(false,
-                    "Esta puerta SOLO se abre con la llave verde Hacendado COMPLETA.");
+                    "Esta puerta SOLO se abre con el Megaconsolador COMPLETA.");
         }
 
         abierta = true;
         return new RespuestaAccion(true,
-                "¡La llave verde Hacendado funciona perfectamente! La puerta se abre.");
+                "¡El Megaconsolador funciona perfectamente! La puerta se abre.");
     }
 
     /**
