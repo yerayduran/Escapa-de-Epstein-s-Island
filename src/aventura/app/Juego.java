@@ -368,6 +368,12 @@ public class Juego {
             // Mensaje especial para la taquilla
             if (contenedor.getNombre().equalsIgnoreCase("Taquilla") && llave != null) {
                 System.out.println("🔓 Usando la " + llave.getNombre() + " que conseguiste del Safe de la primera sala...");
+
+                boolean quitada = jugador.soltarPorNombre(llave.getNombre());
+
+                if (quitada) {
+                    System.out.println("La llave se ha usado y eliminado de tu inventario.");
+                }
             }
         }
 
