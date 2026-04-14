@@ -9,7 +9,7 @@ import aventura.interfaces.Combinable;
  * @author Yeray Durán
  * @version 1.0
  */
-public class Consolador extends Item implements Combinable {
+public class Objeto1 extends Item implements Combinable {
 
     /**
      * Crea un nuevo soporte de llave.
@@ -18,7 +18,7 @@ public class Consolador extends Item implements Combinable {
      * @param descripcion Descripción del objeto.
      * @param visible     Indica si el objeto es visible para el jugador.
      */
-    public Consolador(String nombre, String descripcion, boolean visible) {
+    public Objeto1(String nombre, String descripcion, boolean visible) {
         super(nombre, descripcion, visible);
     }
 
@@ -33,7 +33,7 @@ public class Consolador extends Item implements Combinable {
     @Override
     public Objeto combinar(Objeto otro) {
         if (otro instanceof Pilas) {
-            return new MegaConsolador("Megaconsolador Funcional de P.Diddy", "Consolador muy usado por un negro (5973).", true, "5973");
+            return new MegaConsolador("Megaconsolador Funcional de P.Diddy", "Objeto1 muy usado por un negro (5973).", true, "5973");
         }
         return null;
     }
