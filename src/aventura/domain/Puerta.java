@@ -5,13 +5,16 @@ import aventura.interfaces.Abrible;
 /**
  * Representa una puerta dentro del mundo de la aventura.
  * Una puerta es un tipo de {@link Mueble} que puede abrirse o permanecer cerrada,
- * normalmente mediante el uso de una {@link Llave}.
+ * normalmente mediante el uso de un objeto clave como una {@link Llave} o un artefacto.
  *
  * Implementa la interfaz {@link Abrible}, lo que garantiza que cualquier puerta
  * pueda gestionar su estado de apertura mediante los métodos definidos en dicha interfaz.
  *
+ * En la nueva ambientación del juego, esta puerta representa la salida final,
+ * conocida como la Puerta del Juicio.
+ *
  * @author Manuel Pérez
- * @version 1.0
+ * @version 2.0
  */
 public class Puerta extends Mueble implements Abrible {
 
@@ -32,7 +35,7 @@ public class Puerta extends Mueble implements Abrible {
     }
 
     /**
-     * Intenta abrir la puerta utilizando una llave.
+     * Intenta abrir la puerta utilizando un objeto clave.
      * La puerta solo puede abrirse si:
      * <ul>
      *     <li>No está ya abierta.</li>
@@ -40,7 +43,7 @@ public class Puerta extends Mueble implements Abrible {
      *     <li>El código de seguridad de la llave coincide con el requerido.</li>
      * </ul>
      *
-     * @param llave Llave utilizada para intentar abrir la puerta.
+     * @param llave Llave u objeto clave utilizado para intentar abrir la puerta.
      * @return Una {@link RespuestaAccion} indicando si la acción tuvo éxito
      *         y un mensaje descriptivo para el jugador.
      */
@@ -52,12 +55,12 @@ public class Puerta extends Mueble implements Abrible {
 
         if (llave == null || !"5973".equals(llave.getCodigoSeguridad())) {
             return new RespuestaAccion(false,
-                    "Esta puerta SOLO se abre con el Megaconsolador COMPLETA.");
+                    "La puerta permanece sellada. Necesitas el Artefacto correcto para activar el mecanismo.");
         }
 
         abierta = true;
         return new RespuestaAccion(true,
-                "¡El Megaconsolador funciona perfectamente! La puerta se abre.");
+                "El Artefacto reacciona con la cerradura. La Puerta del Juicio se abre lentamente.");
     }
 
     /**

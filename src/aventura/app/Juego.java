@@ -8,52 +8,62 @@ import aventura.interfaces.Leible;
 
 import java.util.Locale;
 import java.util.Scanner;
+
 /**
-
- Clase principal del juego "DIDDY'S FREAK ESCAPE".
- <p>
- Gestiona la lógica general del juego, el mapa, el jugador,
- la entrada de comandos y la interacción con los objetos.
- </p>*
- Contiene el bucle principal del juego y controla
- los movimientos, acciones y condiciones de victoria.**
-
- @author Yeray Durán y Manuel Pérez
- @version 1.0
+ * Clase principal del juego "Silent Hill: Broken Worlds".
+ * <p>
+ * Gestiona la lógica general del juego, el mapa, el jugador,
+ * la entrada de comandos y la interacción con los objetos.
+ * </p>
+ *
+ * Historia principal inspirada en Silent Hill, con referencias
+ * a Resident Evil, GTA, Luigi's Mansion, Expedition 33, R.E.P.O.,
+ * PEAK, It Takes Two, Elden Ring, Fallout y Cyberpunk.
+ *
+ * @author Yeray Durán y Manuel Pérez
+ * @version 2.0
  */
-
-
 public class Juego {
 
-    // Array que representa el mapa del juego. Cada posición corresponde a una habitación.
+    // Array que representa el mapa del juego.
     private final Habitacion[] mapa;
 
     // Jugador principal del juego.
     private final Jugador jugador;
 
-    // Índice de la habitación en la que se encuentra el jugador.
+    // Índice de la habitación actual.
     private int habitacionActual;
 
-    // Scanner utilizado para leer los comandos del usuario.
+    // Scanner para leer comandos.
     private final Scanner scanner = new Scanner(System.in);
 
     /**
-     * Texto introductorio que describe la historia del juego.
+     * Texto introductorio del juego.
      */
     private static final String DESCRIPCION_JUEGO =
-            "Estabas tirado en el baño de la villa de Maduro, tenías mucho sueño porque habías estado toda la noche " +
-                    "mirando reels de Trump diciendo 'FAKE NEWS' en X. De repente te quedas dormido y cuando despiertas, en vez de estar sentado" +
-                    " en aquel váter, estás en una sala totalmente a oscuras.\n" +
-                    "Te levantas y se enciende la sala. Ya no estás en aquel baño cutre del Palacio Presidencial, ahora estás en un lugar" +
-                    " desconocido. Comienzas a caminar por pasillos llenos de cuadros de Maduro y fotos edgy de Diddy. A medida " +
-                    "que avanzas, todo se vuelve más absurdo y lleno de contenido viral.\n" +
-                    "Finalmente, emerges a la Zona de Safes donde Diddy guardaba sus... 'juguetes' especiales.";
+            "La última noche antes de llegar al pueblo, recibiste un mensaje sin remitente: 'Vuelve'. " +
+                    "Pensaste que era una broma de mal gusto, pero algo dentro de ti te obligó a conducir hasta las afueras de Silent Hill.\n" +
+                    "La carretera estaba vacía. Solo niebla, asfalto mojado y el sonido lejano de una sirena imposible. " +
+                    "Entonces viste una silueta cruzando la calzada. Giraste el volante, el coche derrapó... y todo se volvió negro.\n" +
+                    "Cuando despiertas, ya no estás del todo en el mundo real. Silent Hill ha abierto sus puertas para ti. " +
+                    "Las calles del pueblo cambian a cada paso, como si alguien hubiese mezclado tus recuerdos con pesadillas ajenas.\n" +
+                    "Un tramo de carretera recuerda a una vieja huida entre crimen y culpa. Un hospital oxidado esconde informes clínicos, " +
+                    "cadáveres inmóviles y puertas cerradas con combinaciones imposibles. Una mansión invadida por retratos y susurros " +
+                    "parece arrancada de una pesadilla infantil. Más abajo, un refugio enterrado bajo la ciudad mezcla chatarra militar, " +
+                    "tecnología rota, símbolos antiguos y terminales que todavía brillan en la oscuridad.\n" +
+                    "Cada lugar parece pertenecer a un mundo distinto, pero todos tienen algo en común: tú.\n" +
+                    "No has venido a Silent Hill por casualidad. El pueblo te ha llamado porque sabe lo que hiciste. " +
+                    "Aquí los monstruos no siempre tienen colmillos; a veces tienen recuerdos, nombres y voces que conoces demasiado bien.\n" +
+                    "Si quieres escapar, tendrás que reunir fragmentos de verdad, leer lo que otros dejaron atrás y construir el artefacto " +
+                    "que abre la Puerta del Juicio.\n" +
+                    "Pero recuerda: en Silent Hill, algunas puertas no se abren con llaves... se abren con culpa.";
+
     /**
      * Crea una nueva partida.
      *
      * @param mapa Mapa de habitaciones.
      * @param jugador Jugador del juego.
-     * @param habitacionInicial Posición inicial.
+     * @param habitacionInicial Habitación inicial.
      */
     public Juego(Habitacion[] mapa, Jugador jugador, int habitacionInicial) {
         this.mapa = mapa;
@@ -64,56 +74,133 @@ public class Juego {
 
     /**
      * Punto de entrada principal del programa.
-     * <p>
-     * Inicializa el mapa, objetos, jugador
-     * y lanza el juego.
-     * </p>
      *
      * @param args Argumentos de consola.
      */
-
     public static void main(String[] args) {
-        Habitacion sala1 = new Habitacion("Zona de Safes", "Estás rodeado de safes con dinero ilícito. Uno tiene algo INSANE.");
-        Habitacion sala2 = new Habitacion("Cuarto del Meme Congelado", "Congelador gigante con TODO MATERIAL COMPROMETEDOR. Nota en Comic Sans pegada.");
-        Habitacion sala3 = new Habitacion("Suite VIP de Diddy", "Sala de lujo con reggaeton de fondo. Taquilla dorada con código.");
-        Habitacion sala4 = new Habitacion("Bunker de Epstein", "Almacén oscuro. TODO ESTÁ CONECTADO... demasiado conectado.");
+
+        Habitacion sala1 = new Habitacion(
+                "Carretera de Silent Hill",
+                "La niebla cubre la carretera. Hay marcas de frenazo, un coche destrozado y una señal oxidada que apunta al pueblo."
+        );
+
+        Habitacion sala2 = new Habitacion(
+                "Hospital Otherworld",
+                "El hospital está consumido por óxido, sangre reseca y silencio. Una radio crepita sola en la recepción."
+        );
+
+        Habitacion sala3 = new Habitacion(
+                "Mansión de los Retratos",
+                "Una mansión oscura donde los cuadros parecen observarte. La luz verde de los pasillos hace que todo parezca un recuerdo corrupto."
+        );
+
+        Habitacion sala4 = new Habitacion(
+                "Refugio del Juicio",
+                "Un complejo subterráneo mezcla restos militares, terminales de neón, símbolos rituales y ecos de una civilización rota."
+        );
 
         Habitacion[] mapa = new Habitacion[]{sala1, sala2, sala3, sala4};
 
-        Objeto1 objeto1 = new Objeto1("Objeto1", "Un objeto1 rosa SIN PILAS encontrado en el cuarto de Diddy. Necesita energía para funcionar.", true);
-        Pilas pilas = new Pilas("Pilas", "Pilas Duracell edición especial. Con estas el objeto1 vibrará con toda su potencia.", true);
-        Nota nota = new Nota("Screenshot", "Screenshot de X de Trump a las 3 AM", true, "Para escapar necesitas PODER... combina lo que Diddy dejó olvidado... el objeto1 con pilas vibrará la puerta...");
-        Nota nota2 = new Nota("DM", "DM filtrado de Diddy", true, "BRO dejé las pilas en mi taquilla VIP... código ELITE420... combínalas con mi objeto1 y tendrás el poder vibratorio para abrir...");
-        Llave tarjeta = new Llave("Tarjeta", "Tarjeta VIP de los after parties. Código: ELITE420", true, "ELITE420");
+        Pilas pilas = new Pilas(
+                "Pilas",
+                "Un paquete de pilas todavía funcional. Puede alimentar un objeto esencial para avanzar.",
+                true
+        );
 
-        Contenedor caja = new Contenedor("Safe", "Safe gigante que emite vibraciones extrañas", true, null, null);
-        Contenedor congelador = new Contenedor("Congelador", "Congelador CURSED que emite ruidos raros", true, null, null);
-        Contenedor taquilla = new Contenedor("Taquilla", "Taquilla dorada con teclado numérico. Código: ELITE420", true, "ELITE420", null);
+        Nota notaCarretera = new Nota(
+                "Nota",
+                "Un trozo de papel húmedo encontrado junto al coche.",
+                true,
+                "No fue un accidente. Viniste aquí porque querías olvidar. La luz te mostrará lo que enterraste."
+        );
 
-        sala4.añadirObjeto(objeto1);
-        Puerta puertaSalida = new Puerta("Puerta", "Puerta del bunker con cerradura de vibración. Requiere un Objeto1 Vibratorio (código 5973) para resonar y abrirse.", true);
+        Nota notaHospital = new Nota(
+                "Informe",
+                "Un informe clínico arrugado y manchado.",
+                true,
+                "Paciente con amnesia disociativa. Presenta visión fragmentada de la realidad: crimen, plaga, espectros, ruina y máquinas. Repite una palabra: ASHES33."
+        );
+
+        Nota notaRefugio = new Nota(
+                "Registro",
+                "Un registro técnico guardado en una terminal dañada.",
+                true,
+                "Proyecto R.E.P.O. autorizado. El Artefacto de Apertura requiere fuente de energía portátil y activación con código 5973. La llave de acceso fue escondida tras el retrato sellado."
+        );
+
+        Llave llaveMansion = new Llave(
+                "Llave",
+                "Una llave ornamentada, fría al tacto, con un grabado espectral. En el reverso puede leerse: ASHES33.",
+                true,
+                "ASHES33"
+        );
+
+        Llave artefactoApertura = new Llave(
+                "Artefacto",
+                "Un artefacto improvisado, ensamblado con luz, energía y memoria. Vibra con una frecuencia extraña. Código: 5973.",
+                true,
+                "5973"
+        );
+
+        Contenedor coche = new Contenedor(
+                "Coche",
+                "El coche del accidente. La puerta del copiloto está forzada y el maletero parece medio abierto.",
+                true,
+                null,
+                null
+        );
+
+        Contenedor taquilla = new Contenedor(
+                "Taquilla",
+                "Una taquilla metálica del hospital. Está oxidada, pero aún conserva un cierre funcional.",
+                true,
+                null,
+                null
+        );
+
+        Contenedor retrato = new Contenedor(
+                "Retrato",
+                "Un retrato enorme de una familia sin rostro. Detrás del marco hay una cerradura oculta con teclado.",
+                true,
+                "ASHES33",
+                null
+        );
+
+        Puerta puertaSalida = new Puerta(
+                "Puerta",
+                "Una puerta de acero ennegrecido, cubierta de símbolos y marcas de quemaduras. Solo reaccionará al Artefacto de Apertura con código 5973.",
+                true
+        );
+
+        // Objetos en habitaciones
+        sala1.añadirObjeto(coche);
+        sala1.añadirObjeto(notaCarretera);
+
+        sala2.añadirObjeto(notaHospital);
+        sala2.añadirObjeto(taquilla);
+
+        sala3.añadirObjeto(retrato);
+
+        sala4.añadirObjeto(notaRefugio);
         sala4.añadirObjeto(puertaSalida);
 
-        sala1.añadirObjeto(caja);
-        caja.ponerObjetoDentro(tarjeta);
-
-        sala2.añadirObjeto(nota);
-        sala2.añadirObjeto(congelador);
-        congelador.ponerObjetoDentro(nota2);
-
-        sala3.añadirObjeto(taquilla);
-        taquilla.ponerObjetoDentro(pilas);
+        // Contenidos
+        coche.ponerObjetoDentro(pilas);
+        taquilla.ponerObjetoDentro(artefactoApertura);
+        retrato.ponerObjetoDentro(llaveMansion);
 
         Jugador jugador = new Jugador(7);
         Juego juego = new Juego(mapa, jugador, 0);
         juego.iniciar();
     }
 
-    // Inicia el juego y ejecuta el bucle principal.
+    /**
+     * Inicia el juego.
+     */
     public void iniciar() {
-        System.out.println("=== 🔞 BIENVENIDO AL MULTIVERSE DE MEMES CONTROVERSIALES 🔞 ===\n");
+        System.out.println("=== SILENT HILL: BROKEN WORLDS ===\n");
         System.out.println(DESCRIPCION_JUEGO + "\n");
-        System.out.println("⚠️ DISCLAIMER: Este juego es SATIRA. Escribe 'ayuda' para ver los comandos.\n");
+        System.out.println("Escribe 'ayuda' para ver los comandos.\n");
 
         boolean proceso = true;
         while (proceso) {
@@ -128,16 +215,19 @@ public class Juego {
         System.out.println("¡Gracias por jugar!");
     }
 
-    // Muestra el nombre y descripción de la habitación actual.
+    /**
+     * Muestra la habitación actual.
+     */
     private void mostrarHabitacionActual() {
         System.out.println("--------------------------------------------------");
         System.out.println("📍 Estás en: " + mapa[habitacionActual].getNombre());
         System.out.println("--------------------------------------------------");
+        System.out.println(mapa[habitacionActual].getDescripcion());
         mostrarInfoHabitacion();
     }
 
     /**
-     * Analiza y ejecuta el comando introducido por el usuario.
+     * Procesa el comando introducido.
      *
      * @param linea Texto introducido.
      */
@@ -157,72 +247,79 @@ public class Juego {
             case "combinar" -> combinar(partes);
             case "ayuda" -> ayuda();
             case "salir" -> {
-                System.out.println("Saliendo... ¡Hasta luego!");
+                System.out.println("Abandonas la niebla... por ahora.");
                 System.exit(0);
             }
             default -> System.out.println("Comando no reconocido. Escribe 'ayuda'.");
         }
     }
 
-    // Mueve al jugador a la habitacion de la derecha.
+    /**
+     * Mueve al jugador a la derecha.
+     */
     private void moverDerecha() {
         if (habitacionActual < mapa.length - 1) {
             habitacionActual++;
             jugador.setPosicion(habitacionActual);
-            System.out.println("Te has movido a la habitación de la derecha.");
+            System.out.println("Avanzas entre la niebla hacia una nueva zona del pueblo.");
         } else {
             System.out.println("No puedes ir más a la derecha.");
         }
     }
 
-    // Mueve al jugador a la habitacion de la izquierda.
+    /**
+     * Mueve al jugador a la izquierda.
+     */
     private void moverIzquierda() {
         if (habitacionActual > 0) {
             habitacionActual--;
             jugador.setPosicion(habitacionActual);
-            System.out.println("Te has movido a la habitación de la izquierda.");
+            System.out.println("Retrocedes con cautela, como si el pueblo intentara retenerte.");
         } else {
             System.out.println("No puedes ir más a la izquierda.");
         }
     }
 
-    // Muestra la información de la habitación.
+    /**
+     * Muestra la información de la habitación.
+     */
     private void mirar() {
+        System.out.println(mapa[habitacionActual].getDescripcion());
         mostrarInfoHabitacion();
     }
 
-    // Muestra el inventario del jugador.
+    /**
+     * Muestra el inventario del jugador.
+     */
     private void inventario() {
         System.out.print("💼 Inventario: ");
         Objeto[] inv = jugador.getInventario();
         boolean hayObjetos = false;
+
         for (Objeto obj : inv) {
             if (obj != null) {
                 System.out.print(obj.getNombre() + " ");
                 hayObjetos = true;
             }
         }
+
         if (!hayObjetos) {
-            System.out.print("vacío (como las promesas políticas)");
+            System.out.print("vacío");
         }
+
         System.out.println();
     }
 
     /**
-     * Muestra por pantalla los objetos que hay en la habitación actual.
-     * <p>
-     * Si no hay objetos, indica que no hay ninguno.
-     * </p>
+     * Muestra los objetos de la habitación.
      */
     private void mostrarObjetosHabitacion() {
-
         Objeto[] objetos = mapa[habitacionActual].getObjetos();
         System.out.print("Objetos: ");
 
         boolean hayObjetos = false;
 
         for (Objeto obj : objetos) {
-
             if (obj != null) {
                 System.out.print(obj.getNombre() + " ");
                 hayObjetos = true;
@@ -237,19 +334,13 @@ public class Juego {
     }
 
     /**
-     * Muestra información general de la habitación actual.
-     * <p>
-     * Si existen objetos, los muestra.
-     * Si no hay ninguno, informa al jugador.
-     * </p>
+     * Muestra la información general de la habitación.
      */
     private void mostrarInfoHabitacion() {
-
         Objeto[] objetos = mapa[habitacionActual].getObjetos();
         boolean hayObjetos = false;
 
         for (Objeto obj : objetos) {
-
             if (obj != null) {
                 hayObjetos = true;
                 break;
@@ -264,19 +355,17 @@ public class Juego {
     }
 
     /**
-     * Permite al jugador recoger un objeto de la habitación.
+     * Permite coger un objeto.
      *
-     * @param partes Comando introducido por el usuario separado por palabras.
+     * @param partes Comando separado por partes.
      */
     private void coger(String[] partes) {
-
         if (partes.length < 2) {
             System.out.println("Uso: coger <objeto>");
             return;
         }
 
         String nombreObjeto = partes[1];
-
         Objeto objeto = buscarEnHabitacion(nombreObjeto);
 
         if (objeto == null) {
@@ -285,42 +374,32 @@ public class Juego {
         }
 
         try {
-
             RespuestaAccion r = jugador.coger(objeto);
 
             if (r.esExito()) {
-
                 mapa[habitacionActual].retirarObjeto(objeto);
                 System.out.println("Cogiste " + objeto.getNombre() + ".");
-
             } else {
-
                 System.out.println(r.mensaje());
             }
 
         } catch (InventarioLlenoException e) {
-
             System.out.println("Inventario lleno.");
         }
     }
 
     /**
-     * Permite examinar un objeto de la habitación o del inventario.
-     * <p>
-     * Muestra su descripción y, si es legible, su contenido.
-     * </p>
+     * Examina un objeto.
      *
-     * @param partes Comando introducido por el usuario.
+     * @param partes Comando separado por partes.
      */
     private void examinar(String[] partes) {
-
         if (partes.length < 2) {
             System.out.println("Uso: examinar <objeto>");
             return;
         }
 
         String nombreObjeto = partes[1];
-
         Objeto objeto = buscarObjeto(nombreObjeto);
 
         if (objeto == null) {
@@ -336,23 +415,17 @@ public class Juego {
     }
 
     /**
-     * Permite abrir un contenedor o una puerta.
-     * <p>
-     * Busca automáticamente la llave adecuada
-     * si el jugador la tiene en el inventario.
-     * </p>
+     * Abre un contenedor o una puerta.
      *
-     * @param partes Comando introducido por el usuario.
+     * @param partes Comando introducido.
      */
     private void abrir(String[] partes) {
-
         if (partes.length < 2) {
             System.out.println("Uso: abrir <contenedor>");
             return;
         }
 
         String nombreContenedor = partes[1];
-
         Objeto obj = buscarObjeto(nombreContenedor);
 
         if (!(obj instanceof Abrible abrible)) {
@@ -365,12 +438,10 @@ public class Juego {
         if (obj instanceof Contenedor contenedor) {
             llave = jugador.buscarLlaveParaContenedor(contenedor);
 
-            // Mensaje especial para la taquilla
-            if (contenedor.getNombre().equalsIgnoreCase("Taquilla") && llave != null) {
-                System.out.println("🔓 Usando la " + llave.getNombre() + " que conseguiste del Safe de la primera sala...");
+            if (contenedor.getNombre().equalsIgnoreCase("Retrato") && llave != null) {
+                System.out.println("🔓 Introduces el código de la llave y el retrato se desplaza con un chirrido insoportable.");
 
                 boolean quitada = jugador.soltarPorNombre(llave.getNombre());
-
                 if (quitada) {
                     System.out.println("La llave se ha usado y eliminado de tu inventario.");
                 }
@@ -378,54 +449,43 @@ public class Juego {
         }
 
         if (obj instanceof Puerta) {
-
             llave = jugador.buscarLlavePorCodigo("5973");
 
             if (llave == null) {
-                System.out.println("⛔ No tienes el Objeto1 Vibratorio (objeto1 + pilas) para hacer resonar la puerta del bunker");
+                System.out.println("⛔ No tienes el Artefacto de Apertura necesario para activar la Puerta del Juicio.");
                 return;
             }
         }
 
         RespuestaAccion res = abrible.abrir(llave);
-
         System.out.println(res.mensaje());
 
         if (!res.esExito()) return;
 
         if (obj instanceof Puerta && llave != null) {
-
             boolean quitada = jugador.soltarPorNombre(llave.getNombre());
-
             if (quitada) {
-                System.out.println("La llave se ha usado y eliminado de tu inventario.");
+                System.out.println("El artefacto ha sido absorbido por el mecanismo de la puerta.");
             }
         }
 
         if (obj instanceof Contenedor contenedor) {
-
             Objeto contenido = contenedor.verObjetoDentro();
 
             if (contenido != null) {
-
                 System.out.println("Encuentras: " + contenido.getNombre());
 
                 try {
-
                     RespuestaAccion r = jugador.coger(contenido);
 
                     if (r.esExito()) {
-
                         contenedor.retirarObjetoDentro();
                         System.out.println("Guardado en inventario.");
-
                     } else {
-
                         System.out.println(r.mensaje());
                     }
 
                 } catch (InventarioLlenoException e) {
-
                     System.out.println("No hay espacio en inventario.");
                 }
             }
@@ -433,12 +493,11 @@ public class Juego {
     }
 
     /**
-     * Permite combinar dos objetos del inventario.
+     * Combina dos objetos del inventario.
      *
-     * @param partes Comando introducido por el usuario.
+     * @param partes Comando introducido.
      */
     private void combinar(String[] partes) {
-
         if (partes.length < 3) {
             System.out.println("Uso: combinar <obj1> <obj2>");
             return;
@@ -473,37 +532,33 @@ public class Juego {
             return;
         }
 
-        System.out.println("¡Combinado exitosamente! Creado: " + resultado.getNombre());
+        System.out.println("¡Combinación completada! Creado: " + resultado.getNombre());
 
         jugador.soltarPorNombre(nombreA);
         jugador.soltarPorNombre(nombreB);
 
         try {
-
             jugador.coger(resultado);
             System.out.println(resultado.getNombre() + " añadido al inventario.");
 
         } catch (InventarioLlenoException e) {
-
             mapa[habitacionActual].añadirObjeto(resultado);
             System.out.println(resultado.getNombre() + " dejado en la habitación.");
         }
     }
 
     /**
-     * Permite al jugador cruzar una puerta abierta y finalizar el juego.
+     * Cruza la puerta final.
      *
-     * @param partes Comando introducido por el usuario.
+     * @param partes Comando introducido.
      */
     private void cruzar(String[] partes) {
-
         if (partes.length < 2) {
             System.out.println("Uso: cruzar <puerta>");
             return;
         }
 
         String nombre = partes[1];
-
         Objeto obj = buscarEnHabitacion(nombre);
 
         if (!(obj instanceof Puerta puerta)) {
@@ -512,33 +567,38 @@ public class Juego {
         }
 
         if (!puerta.estaAbierto()) {
-            System.out.println("Primero abre la puerta con la llave correcta.");
+            System.out.println("Primero abre la puerta con el artefacto correcto.");
             return;
         }
 
         System.out.println("""
-                ╔══════════════════════════════════════╗
-                ║ ¡CONSOLADOR VIBRATORIO ACTIVADO!     ║
-                ║ LA PUERTA RESONÓ CON LAS VIBRACIONES ║
-                ║ Y SE ABRIÓ EL BUNKER                 ║
-                ║ ¡VIRALIZASTE EL ESCÁNDALO!          ║
-                ║ 500M DE VIEWS EN 1 HORA              ║
-                ║                                      ║
-                ║  🔥 DIDDY'S FREAK ESCAPE 🔥          ║
-                ╚══════════════════════════════════════╝
+                ╔════════════════════════════════════════════════════╗
+                ║ La sirena deja de sonar.                           ║
+                ║ La niebla se aparta lentamente de tu camino.       ║
+                ║ Por primera vez, Silent Hill guarda silencio.      ║
+                ║                                                    ║
+                ║ Has reunido los fragmentos de tu memoria.          ║
+                ║ Ya sabes la verdad: no llegaste aquí por azar.     ║
+                ║ El pueblo te llamó para obligarte a recordar.      ║
+                ║                                                    ║
+                ║ Frente a ti, la puerta final se abre.              ║
+                ║ No sabes si al cruzarla serás libre...             ║
+                ║ o si simplemente despertarás en otra pesadilla.    ║
+                ║                                                    ║
+                ║         SILENT HILL: BROKEN WORLDS                 ║
+                ╚════════════════════════════════════════════════════╝
                 """);
 
         System.exit(0);
     }
 
     /**
-     * Muestra el menú de ayuda con los comandos disponibles.
+     * Muestra los comandos disponibles.
      */
     private void ayuda() {
-
         System.out.println("""
                 Comandos disponibles:
-                - izquierda/derecha
+                - izquierda / derecha
                 - mirar
                 - inventario
                 - coger <objeto>
@@ -554,17 +614,14 @@ public class Juego {
      * Busca un objeto en la habitación actual.
      *
      * @param nombre Nombre del objeto.
-     * @return Objeto encontrado o {@code null}.
+     * @return Objeto encontrado o null.
      */
     private Objeto buscarEnHabitacion(String nombre) {
-
         Objeto[] objetos = mapa[habitacionActual].getObjetos();
         String n = nombre.toLowerCase(Locale.ROOT);
 
         for (Objeto obj : objetos) {
-
-            if (obj != null &&
-                    obj.getNombre().toLowerCase(Locale.ROOT).equals(n)) {
+            if (obj != null && obj.getNombre().toLowerCase(Locale.ROOT).equals(n)) {
                 return obj;
             }
         }
@@ -575,10 +632,9 @@ public class Juego {
      * Busca un objeto en la habitación o en el inventario.
      *
      * @param nombre Nombre del objeto.
-     * @return Objeto encontrado o {@code null}.
+     * @return Objeto encontrado o null.
      */
     private Objeto buscarObjeto(String nombre) {
-
         Objeto encontrado = buscarEnHabitacion(nombre);
 
         if (encontrado != null) {
@@ -587,9 +643,7 @@ public class Juego {
 
         String n = nombre.toLowerCase(Locale.ROOT);
         for (Objeto obj : jugador.getInventario()) {
-
-            if (obj != null &&
-                    obj.getNombre().toLowerCase(Locale.ROOT).equals(n)) {
+            if (obj != null && obj.getNombre().toLowerCase(Locale.ROOT).equals(n)) {
                 return obj;
             }
         }
