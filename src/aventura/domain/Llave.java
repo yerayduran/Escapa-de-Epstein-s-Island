@@ -2,11 +2,11 @@ package aventura.domain;
 
 /**
  * Representa una llave dentro del juego.
- * <p>
+ *
  * Una llave es un tipo especial de {@link Item} que permite
  * abrir contenedores o puertas protegidas mediante un código
  * de seguridad.
- * </p>
+ *
  *
  * Cada llave está asociada a un código único que debe coincidir
  * con el del contenedor correspondiente.

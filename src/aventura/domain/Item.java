@@ -19,6 +19,7 @@ import aventura.interfaces.Inventariable;
  */
 public class Item extends Objeto implements Inventariable {
 
+
     /**
      * Crea un nuevo item con los datos especificados.
      *
