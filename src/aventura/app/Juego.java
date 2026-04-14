@@ -80,18 +80,18 @@ public class Juego {
 
         Habitacion[] mapa = new Habitacion[]{sala1, sala2, sala3, sala4};
 
-        Consolador consolador = new Consolador("Consolador", "Un consolador rosa SIN PILAS encontrado en el cuarto de Diddy. Necesita energía para funcionar.", true);
-        Pilas pilas = new Pilas("Pilas", "Pilas Duracell edición especial. Con estas el consolador vibrará con toda su potencia.", true);
-        Nota nota = new Nota("Screenshot", "Screenshot de X de Trump a las 3 AM", true, "Para escapar necesitas PODER... combina lo que Diddy dejó olvidado... el consolador con pilas vibrará la puerta...");
-        Nota nota2 = new Nota("DM", "DM filtrado de Diddy", true, "BRO dejé las pilas en mi taquilla VIP... código ELITE420... combínalas con mi consolador y tendrás el poder vibratorio para abrir...");
+        Objeto1 objeto1 = new Objeto1("Objeto1", "Un objeto1 rosa SIN PILAS encontrado en el cuarto de Diddy. Necesita energía para funcionar.", true);
+        Pilas pilas = new Pilas("Pilas", "Pilas Duracell edición especial. Con estas el objeto1 vibrará con toda su potencia.", true);
+        Nota nota = new Nota("Screenshot", "Screenshot de X de Trump a las 3 AM", true, "Para escapar necesitas PODER... combina lo que Diddy dejó olvidado... el objeto1 con pilas vibrará la puerta...");
+        Nota nota2 = new Nota("DM", "DM filtrado de Diddy", true, "BRO dejé las pilas en mi taquilla VIP... código ELITE420... combínalas con mi objeto1 y tendrás el poder vibratorio para abrir...");
         Llave tarjeta = new Llave("Tarjeta", "Tarjeta VIP de los after parties. Código: ELITE420", true, "ELITE420");
 
         Contenedor caja = new Contenedor("Safe", "Safe gigante que emite vibraciones extrañas", true, null, null);
         Contenedor congelador = new Contenedor("Congelador", "Congelador CURSED que emite ruidos raros", true, null, null);
         Contenedor taquilla = new Contenedor("Taquilla", "Taquilla dorada con teclado numérico. Código: ELITE420", true, "ELITE420", null);
 
-        sala4.añadirObjeto(consolador);
-        Puerta puertaSalida = new Puerta("Puerta", "Puerta del bunker con cerradura de vibración. Requiere un Consolador Vibratorio (código 5973) para resonar y abrirse.", true);
+        sala4.añadirObjeto(objeto1);
+        Puerta puertaSalida = new Puerta("Puerta", "Puerta del bunker con cerradura de vibración. Requiere un Objeto1 Vibratorio (código 5973) para resonar y abrirse.", true);
         sala4.añadirObjeto(puertaSalida);
 
         sala1.añadirObjeto(caja);
@@ -382,7 +382,7 @@ public class Juego {
             llave = jugador.buscarLlavePorCodigo("5973");
 
             if (llave == null) {
-                System.out.println("⛔ No tienes el Consolador Vibratorio (consolador + pilas) para hacer resonar la puerta del bunker");
+                System.out.println("⛔ No tienes el Objeto1 Vibratorio (objeto1 + pilas) para hacer resonar la puerta del bunker");
                 return;
             }
         }
