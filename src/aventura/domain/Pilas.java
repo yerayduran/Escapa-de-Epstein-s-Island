@@ -3,25 +3,26 @@ package aventura.domain;
 import aventura.interfaces.Combinable;
 
 /**
- * Representa la cabeza de una llave dentro del sistema de aventura.
+ * Representa una fuente de energía portátil dentro del sistema de aventura.
  * <p>
  * Esta clase extiende {@link Item} e implementa la interfaz {@link Combinable},
- * permitiendo que la cabeza de la llave pueda combinarse con otros objetos
- * compatibles para formar una llave completa.
+ * permitiendo que las pilas puedan combinarse con otros objetos compatibles
+ * para crear un artefacto clave necesario para avanzar en la historia.
  * </p>
  *
  * <p>
- * Su función principal es combinarse con un {@link Objeto1} para generar
- * una instancia de {@link MegaConsolador()}, representando la llave completa.
+ * Su función principal es combinarse con un {@link FragmentoRitual} para generar
+ * una instancia de {@link Artefacto}, representando el objeto final
+ * necesario para abrir la Puerta del Juicio.
  * </p>
  *
  * @author Manuel Pérez
- * @version 1.0
+ * @version 2.1
  */
 public class Pilas extends Item implements Combinable {
 
     /**
-     * Crea una nueva cabeza de llave.
+     * Crea unas nuevas pilas.
      *
      * @param nombre      nombre identificativo del objeto.
      * @param descripcion descripción detallada del objeto.
@@ -32,20 +33,25 @@ public class Pilas extends Item implements Combinable {
     }
 
     /**
-     * Intenta combinar esta cabeza de llave con otro objeto.
+     * Intenta combinar estas pilas con otro objeto.
      * <p>
-     * Si el objeto recibido es una instancia de {@link Objeto1}, se genera
-     * una nueva {@link MegaConsolador()} completamente ensamblada. En caso contrario,
-     * la combinación no es válida y se devuelve {@code null}.
+     * Si el objeto recibido es una instancia de {@link FragmentoRitual},
+     * se genera un nuevo {@link Artefacto} completamente funcional.
+     * En caso contrario, la combinación no es válida y se devuelve {@code null}.
      * </p>
      *
      * @param otro objeto con el que se intenta combinar.
-     * @return una {@link MegaConsolador()} si la combinación es válida; {@code null} en caso contrario.
+     * @return un {@link Artefacto} si la combinación es válida; {@code null} en caso contrario.
      */
     @Override
     public Objeto combinar(Objeto otro) {
-        if (otro instanceof Objeto1) {
-            return new MegaConsolador("Megaconsolador Funcional de P.Diddy", "Objeto1 muy usado por un negro (5973).", true, "5973");
+        if (otro instanceof FragmentoRitual) {
+            return new Artefacto(
+                    "Artefacto de Apertura",
+                    "Una reliquia activada mediante una fuente de energía portátil. Su núcleo late con una vibración inquietante. Código: 5973.",
+                    true,
+                    "5973"
+            );
         }
         return null;
     }

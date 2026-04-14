@@ -3,16 +3,19 @@ package aventura.domain;
 import aventura.interfaces.Leible;
 
 /**
- * Representa una nota dentro del mundo de la aventura.
- * Una nota es un {@link Item} que contiene un texto legible
- * por el jugador. Su función principal es proporcionar
- * información, pistas o narrativa adicional.
+ * Representa una nota, informe, carta o registro dentro del mundo de la aventura.
+ * Una nota es un {@link Item} que contiene un texto legible por el jugador.
+ * Su función principal es aportar pistas, narrativa, fragmentos de memoria
+ * o información relacionada con los puzles y la historia principal.
  *
  * Implementa la interfaz {@link Leible}, lo que garantiza
  * que cualquier nota pueda ser leída mediante el método {@code leer()}.
  *
+ * En la ambientación del juego, las notas ayudan a reconstruir
+ * la verdad oculta tras los sucesos de Silent Hill y sus mundos rotos.
+ *
  * @author Manuel Pérez
- * @version 1.0
+ * @version 2.0
  */
 public class Nota extends Item implements Leible {
 
