@@ -1,5 +1,6 @@
 package aventura.domain;
 
+import aventura.exceptions.AventuraException;
 import aventura.exceptions.InventarioLlenoException;
 import aventura.interfaces.Inventariable;
 
@@ -40,72 +41,30 @@ public class Jugador {
         return inventario;
     }
 
-    /**
-     * Elimina un objeto del inventario según su nombre.
-     * <p>
-     * Reorganiza el inventario tras eliminarlo.
-     * </p>
-     *
-     * @param nombreObjeto Nombre del objeto a soltar.
-     * @return {@code true} si se elimina correctamente,
-     *         {@code false} en caso contrario.
-     */
-
-
-    /**
-     * Comprueba si el jugador posee un objeto concreto.
-     *
-     * @param objeto Objeto a comprobar.
-     * @return {@code true} si lo tiene, {@code false} en caso contrario.
-     */
-    public boolean tieneObjeto(Objeto objeto) {
-
-        for (int i = 0; i < siguienteLibre; i++) {
-
-            if (inventario[i] == objeto) {
-                return true;
-            }
+   public void coger(Objeto objeto) throws AventuraException {
+        if (!(objeto instanceof Inventariable)) {
+            throw new AventuraException("El objeto %s no se puede coger." .formatted(objeto.getNombre()))
         }
 
-        return false;
-    }
-
-    /**
-     * Busca una llave válida para abrir un contenedor.
-     *
-     * @param contenedor Contenedor que se desea abrir.
-     * @return Llave adecuada o {@code null} si no existe.
-     */
-    public Llave buscarLlaveParaContenedor(Contenedor contenedor) {
-
-        if (contenedor.getCodigoNecesario() == null) {
-            return null;
+        if (inventario.size() >= MAX_INVENTARIO) {
+            throw new InventarioLlenoException("El inventario está lleno. No puedes ciger más objetos.")
         }
-        for (int i = 0; i < siguienteLibre; i++) {
-            if (inventario[i] instanceof Llave llave && llave.getCodigoSeguridad().equals(contenedor.getCodigoNecesario())) {
-                return llave;
+
+        inventario.add(objeto);
+   }
+
+   public boolean eliminarDeInventario(Objeto objeto) {
+        return inventario.remove(objeto);
+   }
+
+   public Objeto buscarEnInventario(String nombre){
+        for (Objeto objeto : inventario) {
+            if (objeto.getNombre().equalsIgnoreCase(nombre)) {
+                return objeto;
             }
         }
         return null;
-    }
-
-    /**
-     * Busca una llave en el inventario según su código.
-     *
-     * @param codigo Código de seguridad.
-     * @return Llave encontrada o {@code null}.
-     */
-    public Llave buscarLlavePorCodigo(String codigo) {
-        if (codigo == null) return null;
-
-        for (int i = 0; i < siguienteLibre; i++) {
-
-            Objeto obj = inventario[i];
-            if (obj instanceof Llave llave && codigo.equals(llave.getCodigoSeguridad())) {
-                return llave;
-            }
-        }
-
-        return null;
-    }
+   }
 }
+
+
