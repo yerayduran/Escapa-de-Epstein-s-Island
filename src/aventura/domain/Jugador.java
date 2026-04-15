@@ -43,11 +43,11 @@ public class Jugador {
 
    public void coger(Objeto objeto) throws AventuraException {
         if (!(objeto instanceof Inventariable)) {
-            throw new AventuraException("El objeto %s no se puede coger." .formatted(objeto.getNombre()))
+            throw new AventuraException("El objeto %s no se puede coger." .formatted(objeto.getNombre()));
         }
 
         if (inventario.size() >= MAX_INVENTARIO) {
-            throw new InventarioLlenoException("El inventario está lleno. No puedes ciger más objetos.")
+            throw new InventarioLlenoException("El inventario está lleno. No puedes ciger más objetos.");
         }
 
         inventario.add(objeto);
