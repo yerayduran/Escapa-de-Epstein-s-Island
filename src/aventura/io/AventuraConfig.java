@@ -7,6 +7,7 @@ package aventura.io;
 
 import aventura.domain.Habitacion;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -17,7 +18,7 @@ public class AventuraConfig {
     private Map<String, Habitacion> habitaciones;
 
     public AventuraConfig() {
-        this.habitaciones = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        this.habitaciones = new HashMap<>();
     }
 
     public AventuraConfig(String descripcionGeneral, String habitacionInicial, Map<String, Habitacion> habitaciones) {
