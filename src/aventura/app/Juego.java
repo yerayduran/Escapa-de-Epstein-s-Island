@@ -11,6 +11,7 @@ import aventura.io.CargadorAventura;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -24,7 +25,7 @@ public class Juego {
     private boolean terminado;
 
     public Juego() {
-        this.habitaciones = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        this.habitaciones = new HashMap<>();
         this.terminado = false;
     }
 
@@ -70,7 +71,7 @@ public class Juego {
         this.habitaciones = config.getHabitaciones();
 
         if (this.habitaciones == null) {
-            this.habitaciones = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+            this.habitaciones = new HashMap<>();
         }
     }
 
