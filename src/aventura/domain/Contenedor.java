@@ -2,6 +2,8 @@ package aventura.domain;
 
 import aventura.interfaces.Abrible;
 
+import java.util.logging.Logger;
+
 /**
  * Representa un contenedor dentro del juego que puede almacenar un objeto
  * y ser abierto mediante una llave o sin ella, dependiendo de su configuración.
