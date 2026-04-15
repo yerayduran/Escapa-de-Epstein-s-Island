@@ -1,36 +1,48 @@
 package aventura.interfaces;
 
 import aventura.domain.Llave;
+import aventura.domain.Objeto;
 import aventura.domain.RespuestaAccion;
 
-/**
- * Representa un objeto del juego que puede abrirse mediante una llave.
- * <p>
- * Los objetos que implementan esta interfaz deben definir:
- * <ul>
- *   <li>La lógica necesaria para intentar abrirse con una llave.</li>
- *   <li>Su estado actual (abierto o cerrado).</li>
- * </ul>
- * </p>
- *
- * @author Yeray Durán
- * @version 1.0
- */
 public interface Abrible {
-
     /**
-     * Intenta abrir el objeto usando la llave proporcionada.
+     * Intenta abrir el objeto con la llave proporcionada.
      *
-     * @param llave Llave utilizada para intentar abrir el objeto.
-     * @return Una {@link RespuestaAccion} indicando si la apertura fue exitosa
-     *         y un mensaje descriptivo para el jugador.
+     * @param llave La llave utilizada para intentar abrir el objeto.
+     * @return RespuestaAccion indicando si la apertura fue exitosa o no.
      */
     RespuestaAccion abrir(Llave llave);
 
     /**
-     * Indica si el objeto ya está abierto.
+     * Verifica si el objeto está abierto.
      *
-     * @return true si el objeto está abierto; false en caso contrario.
+     * @return true si el objeto está abierto, false en caso contrario.
      */
     boolean estaAbierto();
+
+    /**
+     * Obtiene el código necesario para abrir el objeto.
+     *
+     * @return El código necesario para abrir el objeto.
+     */
+    String getCodigoNecesario();
+
+    /**
+     * Obtiene el contenido del objeto.
+     *
+     * @return El objeto contenido dentro del objeto abrible o null si no hay contenido.
+     */
+    Objeto getContenido();
+
+    /**
+     * Establece el contenido del objeto.
+     *
+     * @param contenido El objeto que se va a establecer como contenido.
+     */
+    void setContenido(Objeto contenido);
+
+    /**
+     * Cierra el objeto.
+     */
+    void cerrar();
 }
