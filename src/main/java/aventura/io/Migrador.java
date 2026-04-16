@@ -47,6 +47,8 @@ public class Migrador {
 
         return new AventuraConfig(descripcionGeneral, habitacionInicial, mapa);
     }
+
+
 }
 
 
