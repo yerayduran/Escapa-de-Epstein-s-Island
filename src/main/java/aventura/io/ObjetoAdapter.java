@@ -26,8 +26,8 @@ public class ObjetoAdapter implements JsonSerializer<Objeto>, JsonDeserializer<O
     private static final String CAMPO_TIPO = "tipo";
 
     @Override
-    public JsonElement serialize(Objeto src, Type tipoDeSrc, JsonSerializationContext contexto) {
-        JsonObject json = contexto.serialize(src, src.getClass()).getAsJsonObject();
+    public JsonElement serialize(Objeto src, Type tipoDeSrc, JsonSerializationContext contextoo) {
+        JsonObject json = contextoo.serialize(src, src.getClass()).getAsJsonObject();
 
         if (src instanceof Artefacto) {
             json.addProperty(CAMPO_TIPO, "artefacto");
@@ -55,5 +55,28 @@ public class ObjetoAdapter implements JsonSerializer<Objeto>, JsonDeserializer<O
     }
 
     @Override
-    public Objeto deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext contexto){}
+    public Objeto deserialize(JsonElement json, Type tipoDeObj, JsonDeserializationContext contexto)
+            throws JsonParseException {
+
+        JsonObject jsonObjeto = json.getAsJsonObject();
+
+        if (!jsonObjeto.has("tipo")) {
+            throw new JsonParseException("Falta el campo 'tipo' en el objeto JSON.");
+        }
+
+        String tipo = jsonObjeto.get("tipo").getAsString().trim().toLowerCase().replace("_", "").replace(" ", "");
+
+        return switch (tipo) {
+            case "artefacto" -> contexto.deserialize(jsonObjeto, Artefacto.class);
+            case "fragmentoritual" -> contexto.deserialize(jsonObjeto, FragmentoRitual.class);
+            case "pilas" -> contexto.deserialize(jsonObjeto, Pilas.class);
+            case "puerta" -> contexto.deserialize(jsonObjeto, Puerta.class);
+            case "contenedor" -> contexto.deserialize(jsonObjeto, Contenedor.class);
+            case "nota" -> contexto.deserialize(jsonObjeto, Nota.class);
+            case "llave" -> contexto.deserialize(jsonObjeto, Llave.class);
+            case "mueble" -> contexto.deserialize(jsonObjeto, Mueble.class);
+            case "item" -> contexto.deserialize(jsonObjeto, Item.class);
+            default -> throw new JsonParseException("Tipo de objeto desconocido: " + tipo);
+        };
+    }
 }
