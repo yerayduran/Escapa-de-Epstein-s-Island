@@ -24,14 +24,13 @@ public class AventuraConfig {
     public AventuraConfig(String descripcionGeneral, String habitacionInicial, Map<String, Habitacion> habitaciones) {
         this.descripcionGeneral = descripcionGeneral;
         this.habitacionInicial = habitacionInicial;
-        this.habitaciones = habitaciones;
+        setHabitaciones(habitaciones);
     }
 
     public String getDescripcionGeneral() {
         return descripcionGeneral;
     }
-
-
+    
     public String getHabitacionInicial() {
         return habitacionInicial;
 
@@ -41,5 +40,11 @@ public class AventuraConfig {
         return habitaciones;
     }
 
+    public void setHabitaciones(Map<String, Habitacion> habitaciones) {
+        this.habitaciones = new HashMap<>();
+        if (habitaciones != null) {
+            this.habitaciones.putAll(habitaciones);
+        }
+    }
 
 }
