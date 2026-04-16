@@ -72,4 +72,24 @@ public class Puerta extends Mueble implements Abrible {
     public boolean estaAbierto() {
         return abierta;
     }
+
+    @Override
+    public String getCodigoNecesario() {
+        return "";
+    }
+
+    @Override
+    public Objeto getContenido() {
+        return null;
+    }
+
+    @Override
+    public void setContenido(Objeto contenido) {
+
+    }
+
+    @Override
+    public void cerrar() {
+
+    }
 }
