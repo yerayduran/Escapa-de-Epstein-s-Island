@@ -12,7 +12,7 @@ import aventura.interfaces.Combinable;
  * </p>
  *
  * <p>
- * Su función principal es combinarse con unas {@link Pilas}
+ * Su función principal es combinarse con unas {@link Velas}
  * para generar un {@link Artefacto}, el objeto final
  * necesario para abrir la Puerta del Juicio.
  * </p>
@@ -35,7 +35,7 @@ public class FragmentoRitual extends Item implements Combinable {
 
     /**
      * Intenta combinar este fragmento ritual con otro objeto.
-     * Si el objeto proporcionado es una instancia de {@link Pilas},
+     * Si el objeto proporcionado es una instancia de {@link Velas},
      * se genera un {@link Artefacto} completamente funcional.
      *
      * @param otro Objeto con el que se intenta combinar.
@@ -43,7 +43,7 @@ public class FragmentoRitual extends Item implements Combinable {
      */
     @Override
     public Objeto combinar(Objeto otro) {
-        if (otro instanceof Pilas) {
+        if (otro instanceof Velas) {
             return new Artefacto(
                     "Artefacto",
                     "Una reliquia ensamblada a partir de un fragmento ritual y una fuente de energía portátil. Su núcleo emite una vibración inquietante. Código: 5973.",

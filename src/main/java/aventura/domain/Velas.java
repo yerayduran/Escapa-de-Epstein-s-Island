@@ -19,7 +19,7 @@ import aventura.interfaces.Combinable;
  * @author Manuel Pérez
  * @version 2.1
  */
-public class Pilas extends Item implements Combinable {
+public class Velas extends Item implements Combinable {
 
     /**
      * Crea unas nuevas pilas.
@@ -28,7 +28,7 @@ public class Pilas extends Item implements Combinable {
      * @param descripcion descripción detallada del objeto.
      * @param visible     indica si el objeto es visible para el jugador.
      */
-    public Pilas(String nombre, String descripcion, boolean visible) {
+    public Velas(String nombre, String descripcion, boolean visible) {
         super(nombre, descripcion, visible);
     }
 
