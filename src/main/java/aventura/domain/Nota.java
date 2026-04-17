@@ -23,7 +23,7 @@ public class Nota extends Item implements Leible {
      * Texto completo que contiene la nota.
      * Es inmutable una vez creada.
      */
-    private final String texto;
+    private String texto;
 
     /**
      * Crea una nueva nota con los atributos básicos heredados de {@link Item}

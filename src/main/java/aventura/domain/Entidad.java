@@ -19,12 +19,12 @@ public abstract class Entidad {
     /**
      * Nombre identificativo de la entidad.
      */
-    private final String nombre;
+    private String nombre;
 
     /**
      * Descripción detallada de la entidad.
      */
-    private final String descripcion;
+    private String descripcion;
 
     /**
      * Crea una nueva entidad con los valores indicados.

@@ -119,7 +119,7 @@ public class Migrador {
                 "Un complejo subterráneo mezcla restos militares, terminales de neón, símbolos rituales y ecos de una civilización rota."
         );
 
-        Pilas pilas = new Pilas(
+        Velas velas = new Velas(
                 "Pilas",
                 "Un paquete de pilas todavía funcional. Puede alimentar un objeto esencial para avanzar.",
                 true
@@ -203,7 +203,7 @@ public class Migrador {
         sala4.agregarObjeto(puertaSalida);
 
         // Contenidos
-        coche.setContenido(pilas);
+        coche.setContenido(velas);
         taquilla.setContenido(artefactoApertura);
         retrato.setContenido(llaveMansion);
 
