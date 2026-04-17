@@ -14,7 +14,7 @@ package aventura.domain;
  * final en el último tramo de la aventura.
  * </p>
  *
- * @author Yeray Durán
+ * @author Yeray Durán y Manuel Pérez
  * @version 2.1
  */
 public class Artefacto extends Llave {

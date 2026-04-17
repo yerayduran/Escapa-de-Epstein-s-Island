@@ -6,7 +6,6 @@ import aventura.domain.Llave;
 import aventura.domain.Objeto;
 import aventura.exceptions.AventuraException;
 import aventura.exceptions.InventarioLlenoException;
-import aventura.exceptions.ObjetoNoCompatibleException;
 import aventura.interfaces.Abrible;
 import aventura.interfaces.Combinable;
 import aventura.io.AventuraConfig;

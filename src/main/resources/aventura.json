@@ -1,0 +1,104 @@
+{
+  "descripcionGeneral": "La última noche antes de llegar al pueblo, recibiste un mensaje sin remitente: \u0027Vuelve\u0027. Pensaste que era una broma de mal gusto, pero algo dentro de ti te obligó a conducir hasta las afueras de Silent Hill.\nLa carretera estaba vacía. Solo niebla, asfalto mojado y el sonido lejano de una sirena imposible. Entonces viste una silueta cruzando la calzada. Giraste el volante, el coche derrapó... y todo se volvió negro.\nCuando despiertas, ya no estás del todo en el mundo real. Silent Hill ha abierto sus puertas para ti. Las calles del pueblo cambian a cada paso, como si alguien hubiese mezclado tus recuerdos con pesadillas ajenas.\nUn tramo de carretera recuerda a una vieja huida entre crimen y culpa. Un hospital oxidado esconde informes clínicos, cadáveres inmóviles y puertas cerradas con combinaciones imposibles. Una mansión invadida por retratos y susurros parece arrancada de una pesadilla infantil. Más abajo, un refugio enterrado bajo la ciudad mezcla chatarra militar, tecnología rota, símbolos antiguos y terminales que todavía brillan en la oscuridad.\nCada lugar parece pertenecer a un mundo distinto, pero todos tienen algo en común: tú.\nNo has venido a Silent Hill por casualidad. El pueblo te ha llamado porque sabe lo que hiciste. Aquí los monstruos no siempre tienen colmillos; a veces tienen recuerdos, nombres y voces que conoces demasiado bien.\nSi quieres escapar, tendrás que reunir fragmentos de verdad, leer lo que otros dejaron atrás y construir el artefacto que abre la Puerta del Juicio.\nPero recuerda: en Silent Hill, algunas puertas no se abren con llaves... se abren con culpa.",
+  "habitacionInicial": "Carretera de Silent Hill",
+  "habitaciones": {
+    "Mansión de los Retratos": {
+      "id": "Mansión de los Retratos",
+      "descripcion": "Una mansión oscura donde los cuadros parecen observarte. La luz verde de los pasillos hace que todo parezca un recuerdo corrupto.",
+      "objetos": [
+        {
+          "abierto": false,
+          "codigoNecesario": "ASHES33",
+          "contenido": {
+            "codigoSeguridad": "ASHES33",
+            "visible": true,
+            "nombre": "Llave",
+            "descripcion": "Una llave ornamentada, fría al tacto, con un grabado espectral. En el reverso puede leerse: ASHES33.",
+            "tipo": "llave"
+          },
+          "visible": true,
+          "nombre": "Retrato",
+          "descripcion": "Un retrato enorme de una familia sin rostro. Detrás del marco hay una cerradura oculta con teclado.",
+          "tipo": "contenedor"
+        }
+      ],
+      "salidas": {}
+    },
+    "Hospital Otherworld": {
+      "id": "Hospital Otherworld",
+      "descripcion": "El hospital está consumido por óxido, sangre reseca y silencio. Una radio crepita sola en la recepción.",
+      "objetos": [
+        {
+          "texto": "Paciente con amnesia disociativa. Presenta visión fragmentada de la realidad: crimen, plaga, espectros, ruina y máquinas. Repite una palabra: ASHES33.",
+          "visible": true,
+          "nombre": "Informe",
+          "descripcion": "Un informe clínico arrugado y manchado.",
+          "tipo": "nota"
+        },
+        {
+          "abierto": false,
+          "contenido": {
+            "codigoSeguridad": "5973",
+            "visible": true,
+            "nombre": "Artefacto",
+            "descripcion": "Un artefacto improvisado, ensamblado con luz, energía y memoria. Vibra con una frecuencia extraña. Código: 5973.",
+            "tipo": "llave"
+          },
+          "visible": true,
+          "nombre": "Taquilla",
+          "descripcion": "Una taquilla metálica del hospital. Está oxidada, pero aún conserva un cierre funcional.",
+          "tipo": "contenedor"
+        }
+      ],
+      "salidas": {}
+    },
+    "Carretera de Silent Hill": {
+      "id": "Carretera de Silent Hill",
+      "descripcion": "La niebla cubre la carretera. Hay marcas de frenazo, un coche destrozado y una señal oxidada que apunta al pueblo.",
+      "objetos": [
+        {
+          "abierto": false,
+          "contenido": {
+            "visible": true,
+            "nombre": "Pilas",
+            "descripcion": "Un paquete de pilas todavía funcional. Puede alimentar un objeto esencial para avanzar.",
+            "tipo": "pilas"
+          },
+          "visible": true,
+          "nombre": "Coche",
+          "descripcion": "El coche del accidente. La puerta del copiloto está forzada y el maletero parece medio abierto.",
+          "tipo": "contenedor"
+        },
+        {
+          "texto": "No fue un accidente. Viniste aquí porque querías olvidar. La luz te mostrará lo que enterraste.",
+          "visible": true,
+          "nombre": "Nota",
+          "descripcion": "Un trozo de papel húmedo encontrado junto al coche.",
+          "tipo": "nota"
+        }
+      ],
+      "salidas": {}
+    },
+    "Refugio del Juicio": {
+      "id": "Refugio del Juicio",
+      "descripcion": "Un complejo subterráneo mezcla restos militares, terminales de neón, símbolos rituales y ecos de una civilización rota.",
+      "objetos": [
+        {
+          "texto": "Proyecto R.E.P.O. autorizado. El Artefacto de Apertura requiere fuente de energía portátil y activación con código 5973. La llave de acceso fue escondida tras el retrato sellado.",
+          "visible": true,
+          "nombre": "Registro",
+          "descripcion": "Un registro técnico guardado en una terminal dañada.",
+          "tipo": "nota"
+        },
+        {
+          "abierta": false,
+          "visible": true,
+          "nombre": "Puerta",
+          "descripcion": "Una puerta de acero ennegrecido, cubierta de símbolos y marcas de quemaduras. Solo reaccionará al Artefacto de Apertura con código 5973.",
+          "tipo": "puerta"
+        }
+      ],
+      "salidas": {}
+    }
+  }
+}

@@ -17,10 +17,10 @@ import aventura.interfaces.Combinable;
  * necesario para abrir la Puerta del Juicio.
  * </p>
  *
- * @author Yeray Durán
+ * @author Yeray Durán y Manuel Pérez
  * @version 2.1
  */
-public class FragmentoRitual extends Item implements Combinable {
+public class Fragmento extends Item implements Combinable {
 
     /**
      * Crea un nuevo fragmento ritual.
@@ -29,7 +29,7 @@ public class FragmentoRitual extends Item implements Combinable {
      * @param descripcion Descripción del objeto.
      * @param visible     Indica si el objeto es visible para el jugador.
      */
-    public FragmentoRitual(String nombre, String descripcion, boolean visible) {
+    public Fragmento(String nombre, String descripcion, boolean visible) {
         super(nombre, descripcion, visible);
     }
 

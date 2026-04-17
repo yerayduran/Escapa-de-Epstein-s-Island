@@ -13,7 +13,7 @@ package aventura.domain;
  *
  * Hereda de {@link Item}.
  *
- * @author Manuel Pérez
+ * @author Manuel Pérez y Yeray Durán
  * @version 1.0
  */
 public class Llave extends Item {

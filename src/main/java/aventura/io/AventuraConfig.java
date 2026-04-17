@@ -1,5 +1,5 @@
 /**
- * @author ManuelPerez
+ * @author Manuel Pérez y Yeray Durán
  * @version 1.0
  */
 

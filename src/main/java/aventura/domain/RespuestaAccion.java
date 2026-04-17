@@ -9,7 +9,7 @@ package aventura.domain;
  *   <li>Un mensaje descriptivo para el jugador.</li>
  * </ul>
  *
- * @author Yeray Durán
+ * @author Yeray Durán y Yeray Durán
  * @version 1.0
  */
 public record RespuestaAccion(boolean esExito, String mensaje) {
