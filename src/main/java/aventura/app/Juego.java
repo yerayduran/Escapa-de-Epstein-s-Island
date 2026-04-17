@@ -93,6 +93,12 @@ public class Juego {
         }
     }
 
+    /**
+     * Procesa la entrada del usuario, separando la acción (verbo) de los parámetros (argumento).
+     * Deriva la ejecución al método correspondiente según el comando introducido.
+     *
+     * @param linea La cadena de texto completa introducida por el usuario en la consola.
+     */
     private void procesarComando(String linea) {
         String[] partes = linea.split("\\s+", 2);
         String verbo = partes[0].toLowerCase();
@@ -353,6 +359,15 @@ public class Juego {
         }
     }
 
+
+    /**
+     * Busca en el inventario del jugador una llave que coincida con el código de seguridad
+     * necesario para abrir un objeto específico.
+     *
+     * @param abrible El objeto que implementa la interfaz {@link Abrible} y que se desea abrir.
+     * @return El objeto {@link Llave} compatible si el jugador lo posee en su inventario;
+     *         {@code null} en caso contrario.
+     */
     private Llave buscarLlaveCompatible(Abrible abrible) {
         String codigoNecesario = abrible.getCodigoNecesario();
 
@@ -372,10 +387,12 @@ public class Juego {
     }
 
     /**
-     * Busca un objeto por su nombre, primero en la habitación actual y luego en el inventario del jugador.
+     * Busca un objeto por su nombre en el entorno del jugador.
+     * Prioriza la búsqueda en la habitación actual (lo que el jugador ve) y, si no lo encuentra,
+     * busca en el inventario del jugador (lo que el jugador tiene).
      *
-     * @param nombre El nombre del objeto a buscar.
-     * @return El objeto si se encuentra, o null si no se encuentra en ninguno de los dos lugares.
+     * @param nombre El nombre exacto del objeto a buscar.
+     * @return El {@link Objeto} encontrado, o {@code null} si no existe en la habitación ni en el inventario.
      */
     private Objeto buscarObjeto(String nombre) {
         // 1. Buscamos en la habitación (Prioridad 1: Lo que veo)
