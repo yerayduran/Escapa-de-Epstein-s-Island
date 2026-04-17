@@ -130,6 +130,13 @@ public class Juego {
         System.out.println(actual.mirar());
     }
 
+    /**
+     * Desplaza al jugador hacia una dirección específica si existe una salida válida.
+     * Actualiza la posición del jugador a la nueva habitación y muestra la descripción
+     * del nuevo entorno.
+     *
+     * @param direccion La dirección hacia la que el jugador desea moverse (por ejemplo: "norte", "sur").
+     */
     private void comandoIr(String direccion) {
         if (direccion == null || direccion.isBlank()) {
             System.out.println("¿A dónde quieres ir?");
@@ -160,6 +167,13 @@ public class Juego {
         System.out.println(destino.mirar());
     }
 
+    /**
+     * Intenta recoger un objeto de la habitación actual y añadirlo al inventario del jugador.
+     * Si el objeto existe en la habitación y el inventario no está lleno, el objeto es
+     * transferido exitosamente.
+     *
+     * @param nombreObjeto El nombre del objeto que el jugador desea coger.
+     */
     private void comandoCoger(String nombreObjeto) {
         if (nombreObjeto == null || nombreObjeto.isBlank()) {
             System.out.println("¿Qué quieres coger?");
@@ -273,6 +287,15 @@ public class Juego {
         }
     }
 
+    /**
+     * Intenta combinar dos objetos presentes en el inventario o en la habitación actual.
+     * Si los objetos son compatibles y la combinación tiene éxito, los objetos originales
+     * son consumidos y el objeto resultante se añade al inventario del jugador. Si el
+     * inventario está lleno, el nuevo objeto caerá en la habitación actual.
+     *
+     * @param argumento Cadena de texto introducida por el usuario (actualmente no se usa directamente,
+     *                  ya que el método solicita interactivamente los nombres de los objetos).
+     */
     private void comandoCombinar(String argumento) {
         System.out.println("¿Qué objetos quieres combinar?");
         mostrarTodosLosObjetos();
