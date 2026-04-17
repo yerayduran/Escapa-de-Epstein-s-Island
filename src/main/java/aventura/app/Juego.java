@@ -31,6 +31,17 @@ public class Juego {
         this.terminado = false;
     }
 
+    /**
+     * Inicializa el juego completo.
+     *
+     * Se encarga de cargar el mundo desde los ficheros de configuración,
+     * crear el jugador, situarlo en la habitación inicial definida en la
+     * configuración y mostrar la descripción inicial del juego.
+     *
+     * Además, valida que la habitación inicial exista en el mapa cargado
+     * y lanza errores en caso contrario. Finalmente, inicia el bucle
+     * principal de interacción con el usuario.
+     */
     public void iniciar() {
         try {
             cargarMundo();
@@ -62,6 +73,18 @@ public class Juego {
         }
     }
 
+    /**
+     * Carga el mundo del juego desde los ficheros de configuración.
+     *
+     * Utiliza un {@link CargadorAventura} para leer el fichero de propiedades
+     * y el JSON asociado, generando un objeto {@link AventuraConfig}.
+     *
+     * A partir de esta configuración, inicializa el mapa de habitaciones.
+     * Si ocurre algún problema durante la carga o los datos son inválidos,
+     * se lanza una excepción de tipo {@link IOException}.
+     *
+     * @throws IOException Si no se puede leer o interpretar la configuración.
+     */
     private void cargarMundo() throws IOException {
         this.cargador = new CargadorAventura(Path.of("config.properties"));
         this.cargador.cargarConfiguracion();
@@ -78,6 +101,14 @@ public class Juego {
         }
     }
 
+    /**
+     * Bucle principal del juego.
+     *
+     * Mantiene la ejecución continua leyendo comandos del usuario desde
+     * consola hasta que el juego se marca como terminado. Ignora líneas
+     * vacías y delega el procesamiento de cada comando en el método
+     * {@link #procesarComando(String)}.
+     */
     private void buclePrincipal() {
         Scanner sc = new Scanner(System.in);
 
@@ -120,6 +151,14 @@ public class Juego {
         }
     }
 
+    /**
+     * Devuelve la habitación actual en la que se encuentra el jugador.
+     *
+     * Obtiene el identificador de la habitación desde el jugador y lo
+     * utiliza para buscarla en el mapa de habitaciones.
+     *
+     * @return La {@link Habitacion} actual o null si no se puede determinar.
+     */
     private Habitacion getHabitacionActual() {
         if (jugador == null) {
             return null;
@@ -127,6 +166,13 @@ public class Juego {
         return habitaciones.get(jugador.getHabitacionActual());
     }
 
+    /**
+     * Ejecuta el comando "mirar".
+     *
+     * Muestra la descripción de la habitación actual, incluyendo sus
+     * objetos y posibles salidas. Si no se puede determinar la habitación,
+     * informa al usuario.
+     */
     private void comandoMirar() {
         Habitacion actual = getHabitacionActual();
         if (actual == null) {
@@ -224,6 +270,17 @@ public class Juego {
         }
     }
 
+    /**
+     * Ejecuta el comando "examinar" sobre un objeto.
+     *
+     * Busca el objeto indicado primero en la habitación actual y, si no
+     * lo encuentra, en el inventario del jugador. Si existe, muestra su
+     * descripción por pantalla.
+     *
+     * En caso de no encontrar el objeto, informa al usuario.
+     *
+     * @param nombreObjeto Nombre del objeto a examinar.
+     */
     private void comandoExaminar(String nombreObjeto) {
         if (nombreObjeto == null || nombreObjeto.isBlank()) {
             System.out.println("¿Qué quieres examinar?");
@@ -250,6 +307,21 @@ public class Juego {
         System.out.println(objeto.getDescripcion());
     }
 
+    /**
+     * Ejecuta el comando "abrir" sobre un objeto.
+     *
+     * Busca el objeto indicado primero en la habitación actual y luego en
+     * el inventario del jugador. Comprueba si el objeto implementa la
+     * interfaz {@link Abrible} y, en caso afirmativo, intenta abrirlo
+     * utilizando una llave compatible del inventario.
+     *
+     * Si la apertura tiene éxito y el objeto contiene otro en su interior,
+     * este se hace visible y se añade a la habitación actual.
+     * También gestiona errores como objetos inexistentes, no abribles
+     * o problemas al añadir el contenido.
+     *
+     * @param nombreObjeto Nombre del objeto que se desea abrir.
+     */
     private void comandoAbrir(String nombreObjeto) {
         if (nombreObjeto == null || nombreObjeto.isBlank()) {
             System.out.println("¿Qué quieres abrir?");
@@ -410,6 +482,13 @@ public class Juego {
         return jugador.buscarEnInventario(nombre);
     }
 
+    /**
+     * Muestra todos los objetos accesibles al jugador.
+     *
+     * Actualmente delega en la visualización del inventario, pero puede
+     * ampliarse para incluir también los objetos de la habitación u otras
+     * fuentes.
+     */
     private void mostrarTodosLosObjetos() {
         mostrarObjetosInventario();
     }
