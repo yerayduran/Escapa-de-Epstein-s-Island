@@ -7,7 +7,7 @@ package aventura.domain;
  * La visibilidad determina si el objeto aparece en la descripción de la escena
  * o si debe permanecer oculto hasta que algún evento o acción lo revele.
  *
- * @author Yeray Durán
+ * @author Yeray Durán y Manuel Pérez
  * @version 1.0
  */
 public abstract class Objeto extends Entidad {

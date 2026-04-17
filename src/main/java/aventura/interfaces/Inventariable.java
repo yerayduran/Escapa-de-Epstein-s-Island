@@ -7,7 +7,7 @@ package aventura.interfaces;
  * implementan pueden ser recogidas y gestionadas por el sistema de inventario.
  * </p>
  *
- * @author Yeray Durán
+ * @author Manuel Pérez y Yeray Durán
  * @version 1.0
  */
 public interface Inventariable {

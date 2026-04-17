@@ -13,7 +13,7 @@ import aventura.interfaces.Abrible;
  * En la nueva ambientación del juego, esta puerta representa la salida final,
  * conocida como la Puerta del Juicio.
  *
- * @author Manuel Pérez
+ * @author Manuel Pérez y Yeray Durán
  * @version 2.0
  */
 public class Puerta extends Mueble implements Abrible {

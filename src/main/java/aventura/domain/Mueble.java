@@ -9,7 +9,7 @@ package aventura.domain;
  * permite tipificar y extender en el futuro si se desea
  * añadir lógica específica para muebles.
  *
- * @author Manuel Pérez
+ * @author Manuel Pérez Y Yeray Durán
  * @version 1.0
  */
 public class Mueble extends Objeto {
