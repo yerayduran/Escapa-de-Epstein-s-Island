@@ -363,6 +363,7 @@ public class Juego {
                 actual.agregarObjeto(contenido);
                 abrible.setContenido(null);
                 System.out.println("Dentro encuentras: " + contenido.getNombre());
+                consumirObjeto(llaveValida);
             } catch (AventuraException e) {
                 System.out.println("No se pudo sacar el contenido: " + e.getMessage());
             }

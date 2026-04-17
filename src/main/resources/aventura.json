@@ -10,11 +10,10 @@
           "abierto": false,
           "codigoNecesario": "ASHES33",
           "contenido": {
-            "codigoSeguridad": "ASHES33",
             "visible": true,
-            "nombre": "Llave",
-            "descripcion": "Una llave ornamentada, fría al tacto, con un grabado espectral. En el reverso puede leerse: ASHES33.",
-            "tipo": "llave"
+            "nombre": "Fragmento ritual",
+            "descripcion": "Un fragmento ritual ennegrecido, cubierto de cera seca y símbolos grabados. Parece reaccionar ante fuego sagrado.",
+            "tipo": "fragmento"
           },
           "visible": true,
           "nombre": "Retrato",
@@ -22,7 +21,19 @@
           "tipo": "contenedor"
         }
       ],
-      "salidas": {}
+      "salidas": {
+        "norte": "Pasillo del Juicio",
+        "oeste": "Carretera de Silent Hill"
+      }
+    },
+    "Pasillo del Juicio": {
+      "id": "Pasillo del Juicio",
+      "descripcion": "Un pasillo estrecho y alargado, cubierto de humedad y óxido. La luz parpadea al fondo y el aire se vuelve más pesado a cada paso.",
+      "objetos": [],
+      "salidas": {
+        "oeste": "Refugio del Juicio",
+        "sur": "Mansión de los Retratos"
+      }
     },
     "Hospital Otherworld": {
       "id": "Hospital Otherworld",
@@ -37,12 +48,12 @@
         },
         {
           "abierto": false,
+          "codigoNecesario": "HOSPITAL13",
           "contenido": {
-            "codigoSeguridad": "5973",
             "visible": true,
-            "nombre": "Artefacto",
-            "descripcion": "Un artefacto improvisado, ensamblado con luz, energía y memoria. Vibra con una frecuencia extraña. Código: 5973.",
-            "tipo": "llave"
+            "nombre": "Velas",
+            "descripcion": "Un conjunto de velas negras consagradas. Pueden combinarse con un fragmento ritual para formar un objeto de invocación.",
+            "tipo": "velas"
           },
           "visible": true,
           "nombre": "Taquilla",
@@ -50,7 +61,9 @@
           "tipo": "contenedor"
         }
       ],
-      "salidas": {}
+      "salidas": {
+        "sur": "Carretera de Silent Hill"
+      }
     },
     "Carretera de Silent Hill": {
       "id": "Carretera de Silent Hill",
@@ -59,10 +72,11 @@
         {
           "abierto": false,
           "contenido": {
+            "codigoSeguridad": "HOSPITAL13",
             "visible": true,
-            "nombre": "Pilas",
-            "descripcion": "Un paquete de pilas todavía funcional. Puede alimentar un objeto esencial para avanzar.",
-            "tipo": "pilas"
+            "nombre": "Llave del hospital",
+            "descripcion": "Una pequeña llave oxidada con una etiqueta medio quemada: HOSPITAL13.",
+            "tipo": "llave"
           },
           "visible": true,
           "nombre": "Coche",
@@ -77,28 +91,47 @@
           "tipo": "nota"
         }
       ],
-      "salidas": {}
+      "salidas": {
+        "este": "Mansión de los Retratos",
+        "norte": "Hospital Otherworld"
+      }
     },
     "Refugio del Juicio": {
       "id": "Refugio del Juicio",
       "descripcion": "Un complejo subterráneo mezcla restos militares, terminales de neón, símbolos rituales y ecos de una civilización rota.",
       "objetos": [
         {
-          "texto": "Proyecto R.E.P.O. autorizado. El Artefacto de Apertura requiere fuente de energía portátil y activación con código 5973. La llave de acceso fue escondida tras el retrato sellado.",
+          "texto": "El ritual de salida exige llama consagrada y fragmento marcado. Solo unidos podrán quebrar el sello de la Puerta del Juicio.",
           "visible": true,
           "nombre": "Registro",
           "descripcion": "Un registro técnico guardado en una terminal dañada.",
           "tipo": "nota"
         },
         {
+          "abierto": false,
+          "contenido": {
+            "codigoSeguridad": "ASHES33",
+            "visible": true,
+            "nombre": "Llave del retrato",
+            "descripcion": "Una llave ornamentada, fría al tacto, con un grabado espectral. En el reverso puede leerse: ASHES33.",
+            "tipo": "llave"
+          },
+          "visible": true,
+          "nombre": "Estanteria",
+          "descripcion": "Una estantería enorme y polvorienta. Detrás de varios objetos olvidados hay algo importante.",
+          "tipo": "contenedor"
+        },
+        {
           "abierta": false,
           "visible": true,
           "nombre": "Puerta",
-          "descripcion": "Una puerta de acero ennegrecido, cubierta de símbolos y marcas de quemaduras. Solo reaccionará al Artefacto de Apertura con código 5973.",
+          "descripcion": "Una puerta de acero ennegrecido, cubierta de símbolos y marcas de quemaduras. Solo reaccionará ante el objeto ritual completo.",
           "tipo": "puerta"
         }
       ],
-      "salidas": {}
+      "salidas": {
+        "este": "Pasillo del Juicio"
+      }
     }
   }
 }

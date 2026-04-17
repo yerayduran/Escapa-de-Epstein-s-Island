@@ -30,4 +30,5 @@ public class Artefacto extends Llave {
     public Artefacto(String nombre, String descripcion, boolean visible, String codigoSeguridad) {
         super(nombre, descripcion, visible, codigoSeguridad);
     }
+
 }
