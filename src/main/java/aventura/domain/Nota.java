@@ -14,7 +14,7 @@ import aventura.interfaces.Leible;
  * En la ambientación del juego, las notas ayudan a reconstruir
  * la verdad oculta tras los sucesos de Silent Hill y sus mundos rotos.
  *
- * @author Manuel Pérez
+ * @author Manuel Pérez y Yeray Durán
  * @version 2.0
  */
 public class Nota extends Item implements Leible {

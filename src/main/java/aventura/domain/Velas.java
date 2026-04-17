@@ -11,12 +11,12 @@ import aventura.interfaces.Combinable;
  * </p>
  *
  * <p>
- * Su función principal es combinarse con un {@link FragmentoRitual} para generar
+ * Su función principal es combinarse con un {@link Fragmento} para generar
  * una instancia de {@link Artefacto}, representando el objeto final
  * necesario para abrir la Puerta del Juicio.
  * </p>
  *
- * @author Manuel Pérez
+ * @author Manuel Pérez y Yeray Durán
  * @version 2.1
  */
 public class Velas extends Item implements Combinable {
@@ -35,7 +35,7 @@ public class Velas extends Item implements Combinable {
     /**
      * Intenta combinar estas pilas con otro objeto.
      * <p>
-     * Si el objeto recibido es una instancia de {@link FragmentoRitual},
+     * Si el objeto recibido es una instancia de {@link Fragmento},
      * se genera un nuevo {@link Artefacto} completamente funcional.
      * En caso contrario, la combinación no es válida y se devuelve {@code null}.
      * </p>
@@ -45,7 +45,7 @@ public class Velas extends Item implements Combinable {
      */
     @Override
     public Objeto combinar(Objeto otro) {
-        if (otro instanceof FragmentoRitual) {
+        if (otro instanceof Fragmento) {
             return new Artefacto(
                     "Artefacto de Apertura",
                     "Una reliquia activada mediante una fuente de energía portátil. Su núcleo late con una vibración inquietante. Código: 5973.",

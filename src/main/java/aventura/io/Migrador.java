@@ -99,6 +99,7 @@ public class Migrador {
     }
 
     private static Habitacion[] crearHabitacionesAntiguas() throws AventuraException {
+        // Habitaciones
         Habitacion sala1 = new Habitacion(
                 "Carretera de Silent Hill",
                 "La niebla cubre la carretera. Hay marcas de frenazo, un coche destrozado y una señal oxidada que apunta al pueblo."
@@ -115,14 +116,29 @@ public class Migrador {
         );
 
         Habitacion sala4 = new Habitacion(
+                "Pasillo del Juicio",
+                "Un pasillo estrecho y alargado, cubierto de humedad y óxido. La luz parpadea al fondo y el aire se vuelve más pesado a cada paso."
+        );
+
+        Habitacion sala5 = new Habitacion(
                 "Refugio del Juicio",
                 "Un complejo subterráneo mezcla restos militares, terminales de neón, símbolos rituales y ecos de una civilización rota."
         );
 
-        Velas velas = new Velas(
-                "Pilas",
-                "Un paquete de pilas todavía funcional. Puede alimentar un objeto esencial para avanzar.",
-                true
+        // Objetos de Carretera de Silent Hill
+        Contenedor coche = new Contenedor(
+                "Coche",
+                "El coche del accidente. La puerta del copiloto está forzada y el maletero parece medio abierto.",
+                true,
+                null,
+                null
+        );
+
+        Llave llaveHospital = new Llave(
+                "Llave del hospital",
+                "Una pequeña llave oxidada con una etiqueta medio quemada: HOSPITAL13.",
+                true,
+                "HOSPITAL13"
         );
 
         Nota notaCarretera = new Nota(
@@ -132,6 +148,7 @@ public class Migrador {
                 "No fue un accidente. Viniste aquí porque querías olvidar. La luz te mostrará lo que enterraste."
         );
 
+        // Objetos de Hospital Otherworld
         Nota notaHospital = new Nota(
                 "Informe",
                 "Un informe clínico arrugado y manchado.",
@@ -139,43 +156,21 @@ public class Migrador {
                 "Paciente con amnesia disociativa. Presenta visión fragmentada de la realidad: crimen, plaga, espectros, ruina y máquinas. Repite una palabra: ASHES33."
         );
 
-        Nota notaRefugio = new Nota(
-                "Registro",
-                "Un registro técnico guardado en una terminal dañada.",
-                true,
-                "Proyecto R.E.P.O. autorizado. El Artefacto de Apertura requiere fuente de energía portátil y activación con código 5973. La llave de acceso fue escondida tras el retrato sellado."
-        );
-
-        Llave llaveMansion = new Llave(
-                "Llave",
-                "Una llave ornamentada, fría al tacto, con un grabado espectral. En el reverso puede leerse: ASHES33.",
-                true,
-                "ASHES33"
-        );
-
-        Llave artefactoApertura = new Llave(
-                "Artefacto",
-                "Un artefacto improvisado, ensamblado con luz, energía y memoria. Vibra con una frecuencia extraña. Código: 5973.",
-                true,
-                "5973"
-        );
-
-        Contenedor coche = new Contenedor(
-                "Coche",
-                "El coche del accidente. La puerta del copiloto está forzada y el maletero parece medio abierto.",
-                true,
-                null,
-                null
-        );
-
         Contenedor taquilla = new Contenedor(
                 "Taquilla",
                 "Una taquilla metálica del hospital. Está oxidada, pero aún conserva un cierre funcional.",
                 true,
-                null,
+                "HOSPITAL13",
                 null
         );
 
+        Velas velas = new Velas(
+                "Velas",
+                "Un conjunto de velas negras consagradas. Pueden combinarse con un fragmento ritual para formar un objeto de invocación.",
+                true
+        );
+
+        // Objetos de Mansión de los Retratos
         Contenedor retrato = new Contenedor(
                 "Retrato",
                 "Un retrato enorme de una familia sin rostro. Detrás del marco hay una cerradura oculta con teclado.",
@@ -184,11 +179,54 @@ public class Migrador {
                 null
         );
 
-        Puerta puertaSalida = new Puerta(
-                "Puerta",
-                "Una puerta de acero ennegrecido, cubierta de símbolos y marcas de quemaduras. Solo reaccionará al Artefacto de Apertura con código 5973.",
+        Fragmento fragmento = new Fragmento(
+                "Fragmento ritual",
+                "Un fragmento ritual ennegrecido, cubierto de cera seca y símbolos grabados. Parece reaccionar ante fuego sagrado.",
                 true
         );
+
+        // Objetos de Refugio del Juicio
+        Nota notaRefugio = new Nota(
+                "Registro",
+                "Un registro técnico guardado en una terminal dañada.",
+                true,
+                "El ritual de salida exige llama consagrada y fragmento marcado. Solo unidos podrán quebrar el sello de la Puerta del Juicio."
+        );
+
+        Contenedor estanteria = new Contenedor(
+                "Estanteria",
+                "Una estantería enorme y polvorienta. Detrás de varios objetos olvidados hay algo importante.",
+                true,
+                null,
+                null
+        );
+
+        Llave llaveRetrato = new Llave(
+                "Llave del retrato",
+                "Una llave ornamentada, fría al tacto, con un grabado espectral. En el reverso puede leerse: ASHES33.",
+                true,
+                "ASHES33"
+        );
+
+        Puerta puertaSalida = new Puerta(
+                "Puerta",
+                "Una puerta de acero ennegrecido, cubierta de símbolos y marcas de quemaduras. Solo reaccionará ante el objeto ritual completo.",
+                true
+        );
+
+        // Configuración de Salidas
+        sala1.addSalida("norte", "Hospital Otherworld");
+        sala1.addSalida("este", "Mansión de los Retratos");
+
+        sala2.addSalida("sur", "Carretera de Silent Hill");
+
+        sala3.addSalida("oeste", "Carretera de Silent Hill");
+        sala3.addSalida("norte", "Pasillo del Juicio");
+
+        sala4.addSalida("oeste", "Refugio del Juicio");
+        sala4.addSalida("sur", "Mansión de los Retratos");
+
+        sala5.addSalida("este", "Pasillo del Juicio");
 
         // Objetos en habitaciones
         sala1.agregarObjeto(coche);
@@ -199,15 +237,19 @@ public class Migrador {
 
         sala3.agregarObjeto(retrato);
 
-        sala4.agregarObjeto(notaRefugio);
-        sala4.agregarObjeto(puertaSalida);
+        // sala4 (Pasillo del Juicio) no tiene objetos
 
-        // Contenidos
-        coche.setContenido(velas);
-        taquilla.setContenido(artefactoApertura);
-        retrato.setContenido(llaveMansion);
+        sala5.agregarObjeto(notaRefugio);
+        sala5.agregarObjeto(estanteria);
+        sala5.agregarObjeto(puertaSalida);
 
-        return new Habitacion[]{sala1, sala2, sala3, sala4};
+        // Contenidos dentro de los contenedores
+        coche.setContenido(llaveHospital);
+        taquilla.setContenido(velas);
+        retrato.setContenido(fragmento);
+        estanteria.setContenido(llaveRetrato);
+
+        return new Habitacion[]{sala1, sala2, sala3, sala4, sala5};
     }
 }
 

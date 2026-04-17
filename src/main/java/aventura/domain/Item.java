@@ -14,7 +14,7 @@ import aventura.interfaces.Inventariable;
  * Esta clase sirve como base para otros objetos más específicos
  * que puedan añadirse al inventario.
  *
- * @author Manuel Pérez
+ * @author Manuel Pérez y Yeray Durán
  * @version 1.0
  */
 public class Item extends Objeto implements Inventariable {

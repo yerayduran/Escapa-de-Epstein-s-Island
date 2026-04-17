@@ -11,7 +11,7 @@ package aventura.domain;
  * Proporciona métodos comunes para acceder a esta información
  * y una implementación básica del método {@link #toString()}.
  *
- * @author Yeray Durán
+ * @author Yeray Durán y Manuel Pérez
  * @version 1.0
  */
 public abstract class Entidad {

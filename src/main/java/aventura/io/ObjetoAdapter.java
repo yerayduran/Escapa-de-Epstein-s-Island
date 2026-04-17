@@ -2,7 +2,7 @@ package aventura.io;
 
 import aventura.domain.Artefacto;
 import aventura.domain.Contenedor;
-import aventura.domain.FragmentoRitual;
+import aventura.domain.Fragmento;
 import aventura.domain.Item;
 import aventura.domain.Llave;
 import aventura.domain.Mueble;
@@ -31,7 +31,7 @@ public class ObjetoAdapter implements JsonSerializer<Objeto>, JsonDeserializer<O
 
         if (src instanceof Artefacto) {
             json.addProperty(CAMPO_TIPO, "artefacto");
-        } else if (src instanceof FragmentoRitual) {
+        } else if (src instanceof Fragmento) {
             json.addProperty(CAMPO_TIPO, "fragmento");
         } else if (src instanceof Puerta) {
             json.addProperty(CAMPO_TIPO, "puerta");
@@ -68,7 +68,7 @@ public class ObjetoAdapter implements JsonSerializer<Objeto>, JsonDeserializer<O
 
         return switch (tipo) {
             case "artefacto" -> contexto.deserialize(jsonObjeto, Artefacto.class);
-            case "fragmento" -> contexto.deserialize(jsonObjeto, FragmentoRitual.class);
+            case "fragmento" -> contexto.deserialize(jsonObjeto, Fragmento.class);
             case "puerta" -> contexto.deserialize(jsonObjeto, Puerta.class);
             case "contenedor" -> contexto.deserialize(jsonObjeto, Contenedor.class);
             case "nota" -> contexto.deserialize(jsonObjeto, Nota.class);

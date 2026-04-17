@@ -8,7 +8,7 @@ package aventura.exceptions;
  * y la depuración.
  * </p>
  *
- * @author Manuel Pérez
+ * @author Manuel Pérez y Yeray Durán
  * @version 1.0
  */
 public class AventuraException extends Exception {
