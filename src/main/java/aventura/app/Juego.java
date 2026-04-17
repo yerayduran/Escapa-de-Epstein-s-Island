@@ -208,6 +208,10 @@ public class Juego {
         }
     }
 
+    /**
+     * Muestra por consola una lista con todos los objetos que el jugador lleva actualmente
+     * en su inventario. Si el inventario está vacío, informa al usuario de ello.
+     */
     private void comandoInventario() {
         if (jugador.getInventario().isEmpty()) {
             System.out.println("Tu inventario está vacío.");
@@ -432,8 +436,11 @@ public class Juego {
     }
 
     /**
-     * Elimina un objeto del juego, ya sea que esté en la habitación o en el inventario.
-     * Usado tras combinar objetos.
+     * Elimina de forma definitiva un objeto del juego. Intenta borrarlo tanto del
+     * inventario del jugador como de la habitación actual para asegurar que desaparezca
+     * por completo (utilizado típicamente tras combinar objetos con éxito).
+     *
+     * @param obj El {@link Objeto} que se desea eliminar de la partida.
      */
     private void consumirObjeto(Objeto obj) {
         // Intentamos borrar del inventario
@@ -442,6 +449,12 @@ public class Juego {
         getHabitacionActual().eliminarObjeto(obj);
     }
 
+    /**
+     * Punto de entrada principal de la aplicación.
+     * Instancia un nuevo juego y llama al método {@link #iniciar()} para comenzar la ejecución.
+     *
+     * @param args Argumentos pasados por línea de comandos (no se utilizan en esta aplicación).
+     */
     public static void main(String[] args) {
         new Juego().iniciar();
     }
