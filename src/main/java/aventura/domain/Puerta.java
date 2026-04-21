@@ -73,23 +73,42 @@ public class Puerta extends Mueble implements Abrible {
         return abierta;
     }
 
+    /**
+     * Devuelve el código de seguridad necesario para abrir esta puerta.
+     *
+     * @return El código de seguridad requerido ("5973").
+     */
     @Override
     public String getCodigoNecesario() {
-        return "";
+        return "5973";
     }
 
+    /**
+     * Las puertas no contienen objetos en su interior en este juego,
+     * por lo que siempre devuelven null.
+     *
+     * @return {@code null}.
+     */
     @Override
     public Objeto getContenido() {
         return null;
     }
 
+    /**
+     * Las puertas no pueden contener objetos, este método no realiza ninguna acción.
+     *
+     * @param contenido Objeto a introducir (ignorado).
+     */
     @Override
     public void setContenido(Objeto contenido) {
-
+        // Las puertas no contienen objetos
     }
 
+    /**
+     * Cierra la puerta si estaba abierta.
+     */
     @Override
     public void cerrar() {
-
+        this.abierta = false;
     }
 }
