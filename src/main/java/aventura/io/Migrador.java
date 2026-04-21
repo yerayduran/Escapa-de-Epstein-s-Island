@@ -17,10 +17,28 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Herramienta para pasar los datos de la aventura que estaban "picados" a mano
+ * en código a un formato JSON bonito y guardado en un archivo.
+ * Básicamente coge tu historia y mapa y los transforma en el archivo `aventura.json`
+ * que luego lee el CargadorAventura.
+ *
+ * @author ManuelPerez
+ * @version 1.0
+ */
 public class Migrador {
 
+    /**
+     * El motor de Google (Gson) configurado a medida para poder leer y escribir
+     * nuestra clase Objeto y sus herencias sin volvernos locos.
+     */
     private final Gson gson;
 
+    /**
+     * Constructor por defecto.
+     * Prepara el motor Gson diciéndole que formatee el JSON para que se lea bien
+     * por humanos y le enchufa el adaptador especial de objetos.
+     */
     public Migrador() {
         this.gson = new GsonBuilder()
                 .setPrettyPrinting()
@@ -28,6 +46,15 @@ public class Migrador {
                 .create();
     }
 
+    /**
+     * Coge un array de habitaciones a la antigua usanza y las convierte
+     * en el objeto AventuraConfig modernizado que usa nuestro juego.
+     *
+     * @param descripcionGeneral Todo el "lore" del principio del juego.
+     * @param habitacionInicial El ID de la sala donde arranca todo.
+     * @param habitacionesAntiguas El array "viejo" con todas las salas creadas por código.
+     * @return La configuración lista para ser usada o guardada.
+     */
     public AventuraConfig migrarDesdeArray(String descripcionGeneral,
                                            String habitacionInicial,
                                            Habitacion[] habitacionesAntiguas) {
@@ -52,6 +79,14 @@ public class Migrador {
         return new AventuraConfig(descripcionGeneral, habitacionInicial, mapa);
     }
 
+    /**
+     * Coge la configuración de la aventura y la escupe en un archivo JSON en tu disco duro.
+     * Si las carpetas donde quieres guardarlo no existen, las crea sobre la marcha.
+     *
+     * @param config Los datos del juego que quieres guardar.
+     * @param rutaDestino La ruta del archivo donde se va a escribir (ej: "src/main/resources/aventura.json").
+     * @throws IOException Si explota algo intentando crear carpetas o escribir en el archivo.
+     */
     public void guardarJson(AventuraConfig config, Path rutaDestino) throws IOException {
         if (rutaDestino.getParent() != null) {
             Files.createDirectories(rutaDestino.getParent());
@@ -62,6 +97,13 @@ public class Migrador {
         }
     }
 
+    /**
+     * El botón de "play" de este script.
+     * Construye la historia de Silent Hill y sus habitaciones directamente en código,
+     * las empaqueta, y lanza el proceso para guardarlo todo en el archivo JSON definitivo.
+     *
+     * @param args Argumentos de terminal (no los usamos para nada).
+     */
     public static void main(String[] args) {
         try {
             Migrador migrador = new Migrador();
@@ -98,8 +140,16 @@ public class Migrador {
         }
     }
 
+    /**
+     * El "core" manual de la aventura.
+     * Aquí se crean a mano todas las habitaciones de Silent Hill, se llenan de objetos,
+     * notas, contenedores, llaves, y se configuran qué salas conectan con cuáles.
+     * Luego el main coge todo esto y se lo pasa al JSON.
+     *
+     * @return Un array con todas las salas completamente configuradas.
+     * @throws AventuraException Si metemos la pata al añadir algún objeto en las salas.
+     */
     private static Habitacion[] crearHabitacionesAntiguas() throws AventuraException {
-        // Habitaciones
         Habitacion sala1 = new Habitacion(
                 "Carretera de Silent Hill",
                 "La niebla cubre la carretera. Hay marcas de frenazo, un coche destrozado y una señal oxidada que apunta al pueblo."
@@ -125,7 +175,6 @@ public class Migrador {
                 "Un complejo subterráneo mezcla restos militares, terminales de neón, símbolos rituales y ecos de una civilización rota."
         );
 
-        // Objetos de Carretera de Silent Hill
         Contenedor coche = new Contenedor(
                 "Coche",
                 "El coche del accidente. La puerta del copiloto está forzada y el maletero parece medio abierto.",
@@ -148,7 +197,6 @@ public class Migrador {
                 "No fue un accidente. Viniste aquí porque querías olvidar. La luz te mostrará lo que enterraste."
         );
 
-        // Objetos de Hospital Otherworld
         Nota notaHospital = new Nota(
                 "Informe",
                 "Un informe clínico arrugado y manchado.",
@@ -170,7 +218,6 @@ public class Migrador {
                 true
         );
 
-        // Objetos de Mansión de los Retratos
         Contenedor retrato = new Contenedor(
                 "Retrato",
                 "Un retrato enorme de una familia sin rostro. Detrás del marco hay una cerradura oculta con teclado.",
@@ -179,13 +226,12 @@ public class Migrador {
                 null
         );
 
-        Fragmento fragmento = new Fragmento(
+        Fragmento fragmentoRitual = new Fragmento(
                 "Fragmento ritual",
                 "Un fragmento ritual ennegrecido, cubierto de cera seca y símbolos grabados. Parece reaccionar ante fuego sagrado.",
                 true
         );
 
-        // Objetos de Refugio del Juicio
         Nota notaRefugio = new Nota(
                 "Registro",
                 "Un registro técnico guardado en una terminal dañada.",
@@ -214,7 +260,6 @@ public class Migrador {
                 true
         );
 
-        // Configuración de Salidas
         sala1.addSalida("norte", "Hospital Otherworld");
         sala1.addSalida("este", "Mansión de los Retratos");
 
@@ -228,7 +273,6 @@ public class Migrador {
 
         sala5.addSalida("este", "Pasillo del Juicio");
 
-        // Objetos en habitaciones
         sala1.agregarObjeto(coche);
         sala1.agregarObjeto(notaCarretera);
 
@@ -237,16 +281,13 @@ public class Migrador {
 
         sala3.agregarObjeto(retrato);
 
-        // sala4 (Pasillo del Juicio) no tiene objetos
-
         sala5.agregarObjeto(notaRefugio);
         sala5.agregarObjeto(estanteria);
         sala5.agregarObjeto(puertaSalida);
 
-        // Contenidos dentro de los contenedores
         coche.setContenido(llaveHospital);
         taquilla.setContenido(velas);
-        retrato.setContenido(fragmento);
+        retrato.setContenido(fragmentoRitual);
         estanteria.setContenido(llaveRetrato);
 
         return new Habitacion[]{sala1, sala2, sala3, sala4, sala5};
