@@ -164,6 +164,7 @@ public class Juego {
         String argumento = partes.length > 1 ? partes[1].trim() : "";
 
         switch (verbo) {
+            case "ayuda" -> comandoAyuda();
             case "mirar" -> comandoMirar();
             case "ir" -> comandoIr(argumento);
             case "coger" -> comandoCoger(argumento);
@@ -362,6 +363,26 @@ public class Juego {
         }
 
         System.out.println(objeto.getDescripcion());
+    }
+
+    /**
+     * Muestra la lista de comandos disponibles del juego.
+     */
+    private void comandoAyuda() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("=== AYUDA ===\n")
+                .append("ayuda              -> mostrar esta ayuda\n")
+                .append("mirar              -> observar la habitación actual\n")
+                .append("ir <direccion>     -> moverte a otra habitación\n")
+                .append("coger <objeto>     -> recoger un objeto\n")
+                .append("inventario         -> ver lo que llevas encima\n")
+                .append("abrir <objeto>     -> abrir un objeto o contenedor\n")
+                .append("examinar <objeto>  -> ver la descripción de un objeto\n")
+                .append("combinar           -> combinar dos objetos\n")
+                .append("salir / fin / quit -> terminar la partida");
+
+        System.out.println(sb.toString());
     }
 
     /**
