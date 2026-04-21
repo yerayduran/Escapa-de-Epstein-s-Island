@@ -80,7 +80,7 @@ public class Puerta extends Mueble implements Abrible {
      */
     @Override
     public String getCodigoNecesario() {
-        return "5973"; // ← CAMBIO REALIZADO AQUÍ
+        return "5973";
     }
 
     /**
