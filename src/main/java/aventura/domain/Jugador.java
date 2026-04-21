@@ -7,21 +7,38 @@ import aventura.interfaces.Inventariable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Representa al jugador que maneja el usuario durante la partida.
+ * Lleva el control de su nombre, dónde está y qué lleva encima.
+ *
+ * @author Yeray Durán y Manuel Perez
+ */
 public class Jugador {
-    private static final int MAX_INVENTARIO = 10;
-
-
-    private String nombre;
-    private final List<Objeto> inventario;
-    private String habitacionActual;
-
 
     /**
-     * Constructor de la clase Jugador.
-     * Inicializa un nuevo jugador con el nombre especificado, establece su habitación
-     * actual como vacía y crea un inventario vacío.
+     * Número máximo de objetos que caben en el inventario. Si lo superas, se lanza excepción.
+     */
+    private static final int MAX_INVENTARIO = 10;
+
+    /**
+     * El nombre del jugador, que se asigna al crearlo.
+     */
+    private String nombre;
+
+    /**
+     * Lista de objetos que el jugador lleva encima en este momento.
+     */
+    private final List<Objeto> inventario;
+
+    /**
+     * El identificador de la habitación donde está el jugador ahora mismo.
+     */
+    private String habitacionActual;
+
+    /**
+     * Crea un jugador nuevo con el nombre dado, sin objetos y sin habitación asignada.
      *
-     * @param nombre El nombre del jugador.
+     * @param nombre El nombre que le quieres poner al jugador.
      */
     public Jugador(String nombre) {
         this.nombre = nombre;
@@ -29,8 +46,9 @@ public class Jugador {
         this.inventario = new ArrayList<>();
     }
 
+
     /**
-     * Obtiene el nombre del jugador.
+     * Devuelve el nombre del jugador.
      *
      * @return El nombre del jugador.
      */
@@ -39,44 +57,41 @@ public class Jugador {
     }
 
     /**
-     * Obtiene el identificador de la habitación en la que se encuentra actualmente el jugador.
+     * Devuelve el nombre del jugador.
      *
-     * @return El identificador o nombre de la habitación actual.
+     * @return El nombre del jugador.
      */
     public String getHabitacionActual() {
         return habitacionActual;
     }
 
-
     /**
-     * Establece la habitación en la que se encuentra el jugador.
+     * Mueve al jugador a otra habitación, actualizando su posición.
      *
-     * @param habitacionActual El identificador o nombre de la nueva habitación.
+     * @param habitacionActual El id de la habitación a la que se mueve el jugador.
      */
     public void setHabitacionActual(String habitacionActual) {
         this.habitacionActual = habitacionActual;
     }
 
     /**
-     * Obtiene la lista de objetos que el jugador lleva actualmente consigo.
+     * Devuelve la lista de objetos que lleva el jugador en el inventario.
      *
-     * @return Una lista ({@link List}) de objetos en el inventario.
+     * @return La lista con todos los objetos del inventario.
      */
-
     public List<Objeto> getInventario() {
         return inventario;
     }
 
     /**
-     * Añade un objeto al inventario del jugador.
-     * El objeto debe implementar la interfaz {@link Inventariable} y el inventario
-     * no debe superar la capacidad máxima ({@value #MAX_INVENTARIO}).
+     * Intenta meter un objeto en el inventario del jugador.
+     * Si el objeto no se puede coger (no es {@link Inventariable}) o el inventario
+     * está petado hasta arriba, lanza una excepción para avisarnos.
      *
-     * @param objeto El {@link Objeto} que se desea añadir al inventario.
-     * @throws AventuraException Si el objeto no es inventariable (no se puede coger).
-     * @throws InventarioLlenoException Si el inventario ha alcanzado su capacidad máxima.
+     * @param objeto El objeto que el jugador quiere recoger.
+     * @throws AventuraException Si el objeto no es cogible.
+     * @throws InventarioLlenoException Si el inventario ya tiene los {@value MAX_INVENTARIO} objetos que caben.
      */
-
    public void coger(Objeto objeto) throws AventuraException {
         if (!(objeto instanceof Inventariable)) {
             throw new AventuraException("El objeto %s no se puede coger." .formatted(objeto.getNombre()));
@@ -90,26 +105,24 @@ public class Jugador {
    }
 
     /**
-     * Elimina un objeto específico del inventario del jugador.
+     * Saca un objeto del inventario del jugador y lo elimina.
+     * Devuelve true si lo encontró y lo borró, o false si ese objeto no estaba.
      *
-     * @param objeto El {@link Objeto} a eliminar.
-     * @return {@code true} si el objeto estaba en el inventario y fue eliminado correctamente;
-     *         {@code false} en caso contrario.
+     * @param objeto El objeto que quieres quitar del inventario.
+     * @return {@code true} si se eliminó correctamente, {@code false} si no estaba.
      */
-
-    public boolean eliminarDeInventario(Objeto objeto) {
+   public boolean eliminarDeInventario(Objeto objeto) {
         return inventario.remove(objeto);
    }
 
     /**
-     * Busca un objeto en el inventario del jugador por su nombre.
-     * La búsqueda no distingue entre mayúsculas y minúsculas (case-insensitive).
+     * Busca un objeto en el inventario por su nombre, sin importar mayúsculas o minúsculas.
+     * Si no lo encuentra, devuelve null.
      *
-     * @param nombre El nombre exacto del objeto a buscar.
-     * @return El {@link Objeto} si se encuentra en el inventario; {@code null} en caso contrario.
+     * @param nombre El nombre del objeto que buscas.
+     * @return El objeto si está en el inventario, o {@code null} si no está.
      */
-
-    public Objeto buscarEnInventario(String nombre){
+   public Objeto buscarEnInventario(String nombre){
         for (Objeto objeto : inventario) {
             if (objeto.getNombre().equalsIgnoreCase(nombre)) {
                 return objeto;
@@ -118,5 +131,3 @@ public class Jugador {
         return null;
    }
 }
-
-

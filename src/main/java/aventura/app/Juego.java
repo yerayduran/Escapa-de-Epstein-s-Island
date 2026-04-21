@@ -366,7 +366,11 @@ public class Juego {
     }
 
     /**
-     * Muestra la lista de comandos disponibles del juego.
+     * Saca por pantalla el menú de ayuda para echarle una manilla al jugador.
+     *
+     * Básicamente imprime una "chuleta" con todo lo que se puede hacer en el juego
+     * (mirar, ir, coger, etc.) y cómo se escribe cada cosa. Ideal para cuando
+     * alguien esté to perdío
      */
     private void comandoAyuda() {
         StringBuilder sb = new StringBuilder();
