@@ -4,6 +4,7 @@ import aventura.domain.Habitacion;
 import aventura.domain.Jugador;
 import aventura.domain.Llave;
 import aventura.domain.Objeto;
+import aventura.domain.Puerta;
 import aventura.exceptions.AventuraException;
 import aventura.exceptions.InventarioLlenoException;
 import aventura.interfaces.Abrible;
@@ -14,18 +15,45 @@ import aventura.io.MiEntradaSalida;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
+/**
+ * Coordina el flujo principal de la aventura, procesa comandos
+ * y administra el estado de la partida.
+ *
+ * @author Yeray Durán y Manuel Perez
+ */
 public class Juego {
 
+    /**
+     * Identificador interno usado para representar la salida final del juego.
+     */
+    private static final String DESTINO_FIN_JUEGO = "__FIN_JUEGO__";
+
+    /**
+     * Mapa de habitaciones cargadas, indexadas por su identificador.
+     */
     private Map<String, Habitacion> habitaciones;
+    /**
+     * Jugador activo de la partida.
+     */
     private Jugador jugador;
+    /**
+     * Configuración principal de la aventura cargada desde archivos.
+     */
     private AventuraConfig config;
+    /**
+     * Componente encargado de leer la configuración del mundo.
+     */
     private CargadorAventura cargador;
+    /**
+     * Marca que indica si la partida ha finalizado.
+     */
     private boolean terminado;
 
+    /**
+     * Crea una instancia de juego con estado inicial vacío.
+     */
     public Juego() {
         this.habitaciones = new HashMap<>();
         this.terminado = false;
@@ -190,21 +218,37 @@ public class Juego {
      * @param direccion La dirección hacia la que el jugador desea moverse (por ejemplo: "norte", "sur").
      */
     private void comandoIr(String direccion) {
-        if (direccion == null || direccion.isBlank()) {
-            System.out.println("¿A dónde quieres ir?");
-            return;
-        }
-
         Habitacion actual = getHabitacionActual();
         if (actual == null) {
             System.out.println("No se pudo localizar la habitación actual.");
             return;
         }
 
+        if (direccion == null || direccion.isBlank()) {
+            if (actual.getSalidas().isEmpty()) {
+                System.out.println("No hay salidas disponibles desde aquí.");
+                return;
+            }
+
+            System.out.println("Salidas disponibles: " + String.join(", ", actual.getSalidas().keySet()));
+            direccion = MiEntradaSalida.solicitarCadena("¿Dónde quieres ir? ").trim();
+
+            if (direccion.isBlank()) {
+                System.out.println("No has indicado ninguna dirección.");
+                return;
+            }
+        }
+
         String destinoId = actual.getDestino(direccion.toLowerCase());
 
         if (destinoId == null) {
             System.out.println("No puedes ir por ahí.");
+            return;
+        }
+
+        if (DESTINO_FIN_JUEGO.equals(destinoId)) {
+            System.out.println("Cruzas la Puerta del Juicio y la niebla se disipa. Fin del juego.");
+            terminado = true;
             return;
         }
 
@@ -227,21 +271,34 @@ public class Juego {
      * @param nombreObjeto El nombre del objeto que el jugador desea coger.
      */
     private void comandoCoger(String nombreObjeto) {
-        if (nombreObjeto == null || nombreObjeto.isBlank()) {
-            System.out.println("¿Qué quieres coger?");
-            return;
-        }
-
         Habitacion actual = getHabitacionActual();
         if (actual == null) {
             System.out.println("No se pudo localizar la habitación actual.");
             return;
         }
 
-        Objeto objeto = actual.buscar(nombreObjeto);
+        if (nombreObjeto != null && !nombreObjeto.isBlank()) {
+            System.out.println("Para coger, escribe solo 'coger'.");
+        }
+
+        List<Objeto> objetosCogibles = obtenerObjetosCogibles(actual);
+        if (objetosCogibles.isEmpty()) {
+            System.out.println("No hay objetos cogibles en esta habitación.");
+            return;
+        }
+
+        System.out.println("Objetos cogibles: " + nombresDeObjetos(objetosCogibles));
+        String nombreSeleccionado = MiEntradaSalida.solicitarCadena("¿Qué objeto quieres coger? ").trim();
+
+        if (nombreSeleccionado.isBlank()) {
+            System.out.println("No has indicado ningún objeto.");
+            return;
+        }
+
+        Objeto objeto = buscarPorNombre(objetosCogibles, nombreSeleccionado);
 
         if (objeto == null) {
-            System.out.println("No ves ese objeto aquí.");
+            System.out.println("Ese objeto no se puede coger aquí.");
             return;
         }
 
@@ -323,37 +380,43 @@ public class Juego {
      * @param nombreObjeto Nombre del objeto que se desea abrir.
      */
     private void comandoAbrir(String nombreObjeto) {
-        if (nombreObjeto == null || nombreObjeto.isBlank()) {
-            System.out.println("¿Qué quieres abrir?");
-            return;
-        }
-
         Habitacion actual = getHabitacionActual();
         if (actual == null) {
             System.out.println("No se pudo localizar la habitación actual.");
             return;
         }
 
-        Objeto objeto = actual.buscar(nombreObjeto);
-
-        if (objeto == null) {
-            objeto = jugador.buscarEnInventario(nombreObjeto);
+        if (nombreObjeto != null && !nombreObjeto.isBlank()) {
+            System.out.println("Para abrir, escribe solo 'abrir'.");
         }
 
-        if (objeto == null) {
-            System.out.println("No encuentras ese objeto.");
+        List<Objeto> objetosAbribles = obtenerObjetosAbribles(actual);
+        if (objetosAbribles.isEmpty()) {
+            System.out.println("No hay muebles o contenedores abribles en esta habitación.");
             return;
         }
 
-        if (!(objeto instanceof Abrible abrible)) {
-            System.out.println("Eso no se puede abrir.");
+        System.out.println("Objetos abribles: " + nombresDeObjetos(objetosAbribles));
+        String nombreSeleccionado = MiEntradaSalida.solicitarCadena("¿Qué objeto quieres abrir? ").trim();
+
+
+        Objeto objeto = buscarPorNombre(objetosAbribles, nombreSeleccionado);
+
+        if (objeto == null) {
+            System.out.println("Ese objeto no se puede abrir aquí.");
             return;
         }
 
+        Abrible abrible = (Abrible) objeto;
         Llave llaveValida = buscarLlaveCompatible(abrible);
 
         var respuesta = abrible.abrir(llaveValida);
         System.out.println(respuesta.mensaje());
+
+        if (respuesta.esExito() && objeto instanceof Puerta) {
+            actual.addSalida("norte", DESTINO_FIN_JUEGO);
+            System.out.println("Una nueva salida se abre hacia el norte.");
+        }
 
         if (respuesta.esExito() && abrible.getContenido() != null) {
             Objeto contenido = abrible.getContenido();
@@ -368,6 +431,66 @@ public class Juego {
                 System.out.println("No se pudo sacar el contenido: " + e.getMessage());
             }
         }
+    }
+
+    /**
+     * Obtiene los objetos visibles de una habitación que pueden recogerse.
+     *
+     * @param habitacion habitación a inspeccionar.
+     * @return lista de objetos inventariables visibles.
+     */
+    private List<Objeto> obtenerObjetosCogibles(Habitacion habitacion) {
+        List<Objeto> objetosCogibles = new ArrayList<>();
+        for (Objeto obj : habitacion.getObjetos()) {
+            if (obj != null && obj.isVisible() && obj instanceof aventura.interfaces.Inventariable) {
+                objetosCogibles.add(obj);
+            }
+        }
+        return objetosCogibles;
+    }
+
+    /**
+     * Obtiene los objetos visibles de una habitación que implementan apertura.
+     *
+     * @param habitacion habitación a inspeccionar.
+     * @return lista de objetos abribles visibles.
+     */
+    private List<Objeto> obtenerObjetosAbribles(Habitacion habitacion) {
+        return habitacion.getObjetos().stream()
+                .filter(Objects::nonNull)
+                .filter(Objeto::isVisible)
+                .filter(obj -> obj instanceof Abrible)
+                .toList();
+    }
+
+    /**
+     * Busca un objeto por nombre dentro de una lista dada.
+     *
+     * @param objetos colección de objetos candidata.
+     * @param nombre nombre a localizar (sin distinguir mayúsculas/minúsculas).
+     * @return objeto encontrado o {@code null} si no existe coincidencia.
+     */
+    private Objeto buscarPorNombre(List<Objeto> objetos, String nombre) {
+        for (Objeto obj : objetos) {
+            if (obj.getNombre().equalsIgnoreCase(nombre)) {
+                return obj;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Convierte una lista de objetos en una cadena con sus nombres separados por comas.
+     *
+     * @param objetos lista de objetos a representar.
+     * @return texto con los nombres listados.
+     */
+    private String nombresDeObjetos(List<Objeto> objetos) {
+        List<String> nombres = new ArrayList<>();
+        for (Objeto obj : objetos) {
+            nombres.add(obj.getNombre());
+        }
+        return String.join(", ", nombres);
     }
 
     /**
@@ -446,21 +569,12 @@ public class Juego {
      *         {@code null} en caso contrario.
      */
     private Llave buscarLlaveCompatible(Abrible abrible) {
-        String codigoNecesario = abrible.getCodigoNecesario();
-
-        if (codigoNecesario == null) {
-            return null;
-        }
-
-        for (Objeto obj : jugador.getInventario()) {
-            if (obj instanceof Llave llave) {
-                if (codigoNecesario.equals(llave.getCodigoSeguridad())) {
-                    return llave;
-                }
-            }
-        }
-
-        return null;
+        return jugador.getInventario().stream()
+                .filter(obj -> obj instanceof Llave)
+                .map(obj -> (Llave) obj)
+                .filter(llave -> Objects.equals(llave.getCodigoSeguridad(), abrible.getCodigoNecesario()))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -486,7 +600,7 @@ public class Juego {
     /**
      * Muestra todos los objetos accesibles al jugador.
      *
-     * Actualmente delega en la visualización del inventario, pero puede
+     * Actualmente, delega en la visualización del inventario, pero puede
      * ampliarse para incluir también los objetos de la habitación u otras
      * fuentes.
      */
@@ -529,12 +643,7 @@ public class Juego {
         getHabitacionActual().eliminarObjeto(obj);
     }
 
-    /**
-     * Punto de entrada principal de la aplicación.
-     * Instancia un nuevo juego y llama al método {@link #iniciar()} para comenzar la ejecución.
-     *
-     * @param args Argumentos pasados por línea de comandos (no se utilizan en esta aplicación).
-     */
+
     public static void main(String[] args) {
         new Juego().iniciar();
     }
