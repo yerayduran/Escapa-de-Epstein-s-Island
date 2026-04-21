@@ -7,7 +7,7 @@ package aventura.interfaces;
  * se mostrará cuando el jugador intente leerlos.
  * </p>
  *
- * @author Manuel Pérez
+ * @author Manuel Pérez y Yeray Durán
  * @version 1.0
  */
 public interface Leible {

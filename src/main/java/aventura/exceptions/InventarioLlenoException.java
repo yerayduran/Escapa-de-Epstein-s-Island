@@ -8,7 +8,7 @@ package aventura.exceptions;
  * facilitando un manejo más preciso en la lógica de la aventura.
  * </p>
  *
- * @author Manuel Pérez
+ * @author Manuel Pérez y Yeray Durán
  * @version 1.0
  */
 public class InventarioLlenoException extends AventuraException {

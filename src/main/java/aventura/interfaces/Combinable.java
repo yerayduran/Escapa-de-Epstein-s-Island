@@ -9,7 +9,7 @@ import aventura.domain.Objeto;
  * para determinar si la combinación es válida y qué objeto resultante se genera.
  * </p>
  *
- * @author Yeray Durán
+ * @author Manuel Pérez y Yeray Durán
  * @version 1.0
  */
 public interface Combinable {

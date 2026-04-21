@@ -1,4 +1,4 @@
-# 🚀 Proyecto: NIGHT CLASS
+# 🚀 Proyecto: SILLENT HILLS
 
 **Miembros del Equipo:**
 * Manuel Pérez Rodríguez
@@ -6,15 +6,22 @@
 
 ---
 
-## 📖 Nuestra Historia (Escapa de Epstein´s Island)
+## 📖 Nuestra Historia
 
-**Temática del Juego:** Escapa de Epstein´s Island
+**Temática del Juego:** Silent Hill
 
 **Premisa:**
-> Estabas tirado en el baño de la villa de Maduro, tenías mucho sueño porque habías estado toda la noche mirando reels de Trump diciendo 'FAKE NEWS' en X. De repente te quedas dormido y cuando despiertas, en vez de estar sentado en aquel váter, estás en una sala totalmente a oscuras. Te levantas y se enciende la sala. Ya no estás en aquel baño cutre del Palacio Presidencial, ahora estás en un lugar desconocido. Comienzas a caminar por pasillos llenos de cuadros de Maduro y fotos edgy de Diddy. A medida que avanzas, todo se vuelve más absurdo y lleno de contenido viral. Finalmente, emerges a la Zona de Safes donde Diddy guardaba sus... 'juguetes' especiales.
+> La última noche antes de llegar al pueblo, recibiste un mensaje sin remitente: "Vuelve". Pensaste que era una broma de mal gusto, pero algo dentro de ti te obligó a conducir hasta las afueras de Silent Hill.  
+> La carretera estaba vacía. Solo niebla, asfalto mojado y el sonido lejano de una sirena imposible. Entonces viste una silueta cruzando la calzada. Giraste el volante, el coche derrapó... y todo se volvió negro.  
+> Cuando despiertas, ya no estás del todo en el mundo real. Silent Hill ha abierto sus puertas para ti. Las calles del pueblo cambian a cada paso, como si alguien hubiese mezclado tus recuerdos con pesadillas ajenas.  
+> Un tramo de carretera recuerda a una vieja huida entre crimen y culpa. Un hospital oxidado esconde informes clínicos, cadáveres inmóviles y puertas cerradas con combinaciones imposibles. Una mansión invadida por retratos y susurros parece arrancada de una pesadilla infantil. Más abajo, un refugio enterrado bajo la ciudad mezcla chatarra militar, tecnología rota, símbolos antiguos y terminales que todavía brillan en la oscuridad.  
+> Cada lugar parece pertenecer a un mundo distinto, pero todos tienen algo en común: tú.  
+> No has venido a Silent Hill por casualidad. El pueblo te ha llamado porque sabe lo que hiciste. Aquí los monstruos no siempre tienen colmillos; a veces tienen recuerdos, nombres y voces que conoces demasiado bien.  
+> Si quieres escapar, tendrás que reunir fragmentos de verdad, leer lo que otros dejaron atrás y construir el artefacto que abre la Puerta del Juicio.  
+> Pero recuerda: en Silent Hill, algunas puertas no se abren con llaves... se abren con culpa.
 
 **Objetivo:**
-Explorar las pistas y encontrar una forma de salir del sitio misterioso.
+Explorar las pistas, sobrevivir a las manifestaciones del pueblo y encontrar una forma de abrir la Puerta del Juicio para escapar.
 
 ---
 
@@ -39,7 +46,7 @@ Esta primera versión del proyecto (Misión 1 / UD1-UD3) implementa el "núcleo"
 
 ## ⚙️ Estado del Proyecto (Fase 2: POO)
 
-Esta fase refactoriza el motor básico (Fase 1) a Programación Orientada a Objetos. 
+Esta fase refactoriza el motor básico (Fase 1) a Programación Orientada a Objetos.
 
 El objetivo es convertir el diseño procedural en un diseño con clases claras (Habitacion, Jugador, Objeto), usar colecciones en lugar de arrays y mejorar la mantenibilidad y extensibilidad del juego.
 
@@ -55,14 +62,40 @@ El objetivo es convertir el diseño procedural en un diseño con clases claras (
 
 * Java (JDK)
 * Programación Orientada a Objetos
-* Colecciones (ArrayList, HashMap)
 * Arrays
 * Interfaces
-* Records
 * Excepciones
 * Git
 
-## 🔜 Próximas Fases
+---
 
-* **Fase 3 (Colecciones/Ficheros):** Cambiar los arrays del inventario por `ArrayLists` y añadir un sistema de **Guardar/Cargar Partida**.
-* **Fase 4 (GUI/BBDD):** Crear una interfaz gráfica (GUI) y conectar a una base de datos para guardar progresos o logros.
+## ⚙️ Estado del Proyecto (Fase 3: Colecciones, JSON y Persistencia)
+
+Esta fase desacopla la historia del motor del juego, eliminando los datos hardcodeados en el código fuente y convirtiendo el motor en una estructura flexible capaz de cargar cualquier aventura desde archivos externos.
+
+El objetivo es sustituir los arrays y referencias fijas por estructuras dinámicas del Java Collections Framework, incorporar persistencia con Java NIO.2 y externalizar toda la configuración del mundo usando archivos `.properties` y formato JSON.
+
+**Funcionalidad de la Fase:**
+
+* **Refactorización del modelo de datos**: el `Jugador` pasa a guardar la habitación actual mediante un ID de tipo `String` en lugar de un índice numérico, y el inventario se gestiona mediante `ArrayList`.
+* **Conexiones entre habitaciones mediante identificadores**: la clase `Habitacion` sustituye las referencias directas por un `Map` donde cada dirección apunta al ID textual de la sala destino.
+* **Serialización y deserialización polimórfica con Gson**: creación de un `ObjetoAdapter` para poder guardar y reconstruir correctamente objetos abstractos y sus subclases (`Llave`, `Mueble`, `Contenedor`, etc.).
+* **Externalización del mundo del juego a JSON**: creación de una clase contenedora `AventuraConfig` y de una herramienta `Migrador` para exportar las habitaciones y objetos existentes a un archivo `aventura.json`.
+* **Carga de configuración profesional mediante properties**: creación de un archivo `config.properties` para definir rutas base del proyecto y nombre del archivo principal de aventura.
+* **Uso de Java NIO.2 para lectura de archivos**: implementación de la clase `CargadorAventura`, encargada de leer la configuración con `Properties`, `Path` y `Files.newBufferedReader`, y cargar el mundo base desde JSON.
+* **Nuevo motor basado en datos externos**: eliminación de las instancias hardcodeadas de `Habitacion` en el arranque del juego y carga del mapa global desde el archivo `aventura.json`.
+* **Actualización del comando `ir`**: el movimiento del jugador pasa a depender del ID de la sala actual y de las salidas definidas en el `Map` de cada habitación, controlando además direcciones escritas en mayúsculas o minúsculas.
+
+**Tecnologías (Fase 3):**
+
+* Java (JDK)
+* Programación Orientada a Objetos
+* Colecciones (List, Map, Set, ArrayList, HashMap)
+* JSON
+* Gson
+* Serialización y Deserialización
+* Java NIO.2
+* Properties
+* Paths
+* Persistencia de datos
+* Git
